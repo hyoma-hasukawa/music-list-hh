@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'artist.apps.ArtistConfig',
     'playlist.apps.PlaylistConfig',
+    'mypage.apps.MypageConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
+# IMAGE_URL = "/images/"

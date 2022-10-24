@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+# from django.comf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #djangoにURLが入った
     path('artist/', include("artist.urls")),
     path('playlist/', include("playlist.urls")),
+    path('mypage/', include("mypage.urls")),
 ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.IMAGE_URL,document_root=settings.IMAGE_ROOT)
