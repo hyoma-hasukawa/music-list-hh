@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'artist/css/style.css' %}">
+</head>
+<body>
+    <div class="aritst">
+        <h1>
+            artist名:Ado
+        </h1>
+        <img src="{{aaa.images}}" alt="Ado"></a>
+    </div>
+    <p class="sub">
+        映画ONEPIECE FILM REDの主題歌にして本作のメインヒロインであるウタが歌う劇中歌。ウタの歌唱担当であるAdoの曲でもある。 
+        楽曲提供は中田ヤスタカ。...
+    </p>
+    <div class="youtube">
+        <ul class="douga">
+            <li><img src="{{bbb.images}}" alt="新時代"></a></li>
+            <li><img src="{{ccc.images}}" alt="うっせぇわ"></a></li>
+            <li><img src="{{ddd.images}}" alt="踊(Odo)"></a></li>
+        </ul>
+        <ul class="sinjidai">
+            <li>【Ado】New Cenesis/新時代（UTA from ONE PIECE FILM RED）</li>
+            <li>youyube.com</li>
+            <li>2022/6/15</li>
+        </ul>
+        <ul class="use">
+            <li>【Ado】うっせぇわ（Ussewa）- Youtube</li>
+            <li>youyube.com</li>
+            <li>2020/10/23</li>
+        </ul>
+        <ul class="Odo">
+            <li>【Ado】踊（Odo）- Youtube</li>
+            <li>youyube.com</li>
+            <li>2021/4/27</li>
+        </ul>
+    </div>
+    <div class="live">
+        <div class="info">
+            ★2022.12.2(金)-2023.1.10(火)
+            ♪神奈川県・福岡県・北海道・東京都・愛知県・大阪府
+        </div>
+        <ul class="place">
+            <li>2022.12.2(金) 神奈川県 KT Zeep Yokohama</li>
+            <li>2022.12.8(木) 福岡県 Zeep Fukuoka</li>
+            <li>2022.12.14(水) 北海道 Zeep Sapporo</li>
+        </ul>
+        <div class="submit">
+            <input class="close" type="submit" value="予定枚数終了" id="submit">
+            <input class="open" type="submit" value="販売中" id="submit">
+            <input class="reserve" type="submit" value="販売予定" id="submit">
+        </div>
+    </div>
+</body>
+</html>

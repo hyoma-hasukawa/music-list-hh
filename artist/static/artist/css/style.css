@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* 共通部分
+-----------------------------*/
+html{
+    /* 文字の大きさ */
+    font-size: 100%;
+    /* 背景 */
+    background-color: #e6f0f0;
+}
+/* header
+-----------------------------*/
+h1{
+    /* color */
+    color: blue;
+}
+
+.artist{
+    /* color */
+    color: blue;
+    /* フォント */
+    font-family: "ヒラギノ丸ゴ Pro W4";
+    /* 行間 */
+    line-height: 1.0;
+    
+}
+.artist img{
+    /* 横幅 */
+    width: 1120px;
+    height: auto;
+    margin-left: 220px;
+    /* 丸くする */
+    border-radius: 1em;
+}
+/* タイトル */
+.title{
+    /* 文字の大きさ */
+    font-size: 3rem;
+    /* 文章を左に揃える */
+    text-align: left;
+    /* 外枠の余白 */
+    margin-left: 220px;
+    /* 高さ */
+    height: 70px;
+}
+.main-nav img{
+    /* 横幅 */
+    width: 1120px;
+    height: auto;
+    margin-left: 220px;
+    /* 丸くする */
+    border-radius: 1em;
+    display: flex;
+}
+.sub{
+    /* 文字の大きさ */
+    font-size: 3rem;
+    /* 文章を左に揃える */
+    text-align: left;
+    /* 外枠の余白 */
+    margin-left: 220px;
+    /* 高さ */
+    height: 70px;
+}
+ul{
+    /* 横幅 */
+    width: 70%;
+    /* レイアウト */
+    display: flex;
+    align-content: space-between;
+    /* display: grid;
+    grid-template-columns: repeat(4,minmax(240px,1fr)); */
+    /* 外枠 */
+    margin: 50px 0px 0px 160px;
+    /* リストの表示 */
+    list-style-type: none;
+}
+.douga{
+    display: column;
+}
