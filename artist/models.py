@@ -6,9 +6,12 @@ from django.db import models
 # イベントキー
 
 class Artist(models.Model):
-    name = models.CharField("aritst名",max_length=128)
-    youtube = models.CharField("動画",max_length=128)
-    live = models.CharField("ライブ",max_length=128)
+    id = models.BigAutoField("id")
+    name = models.CharField("aritst名", max_length=128)
+    youtube = models.CharField("動画", max_length=128)
+    live = models.CharField("ライブ", max_length=128)
+    created_at = models.DateTimeField("作成日時", auto_now_add=True)
+    updated_at = models.DateTimeField("更新日時", auto_now=True)
 
 
 
