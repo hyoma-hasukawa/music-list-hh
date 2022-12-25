@@ -10,64 +10,469 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
+<link rel="{% static 'mypage/css/style.css' %}">
 </head>
-<body>
-    <!-- header -->
-    <div class="wrap container">
-        <div class="row mb-5">
-            <header>
-                <h1 class="header-logo m-3 p-1">Spotify オリジナルサイト</h1>
-                <!-- <div class="controll_panel d-flex justify-content-between">
-                    <form action="header-search-form" class="d-flex m-3 p-1">
-                        <input type="hidden" value="true" name="block">
-                        <input class="form-search_input" type="text" placeholder="プレイリスト検索">
-                        <input class="form-search btn btn-outline-secondary" type="submit" value="検索">
-                    </form>
-                <div class="header_tool d-flex justify-content-end align-items-center button">
-                    <a href="/login" class="tool_login border-1 btn btn-outline-secondary border-outline-secondary px-4 py-2">
-                        ログイン
-                    </a>
-                    <a href="/regist" class="tool_register border-1 border-outline-secondary btn btn-outline-secondary px-4 py-2 ms-3">
-                    会員登録
-                    </a>
-                </div> -->
-            </header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<body class="text-white bg-dark">
+    <header>
+        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand ms-2" href="#">Spotify</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown" id="genre_btn">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            音楽ジャンル
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link active ms-2" aria-current="page" href="#">Home</a>
+                        </li>
+                    </ul>
+                    <div id="modal_menu" class="model-menu hidden me-auto mb-2 mb-lg-0">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                音楽ジャンル
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="header-gene1">
+                                    <a class="dropdown-item active" href="#">J-POP</a>
+                                </li>
+                                <li class="header-gene2">
+                                    <a class="dropdown-item" href="#">アニメ</a>
+                                </li>
+                                <li class="header-gene3">
+                                    <a class="dropdown-item" href="#">HIPHOP/レゲエ</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="header-gene4">
+                                    <a class="dropdown-item" href="#">洋楽</a>
+                                </li>
+                                <li class="header-gene5">
+                                    <a class="dropdown-item" href="#">K-POP</a>
+                                </li>
+                                <li class="header-gene6">
+                                    <a class="dropdown-item" href="#">演歌</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="header-gene7">
+                                    <a class="dropdown-item" href="#">ジャズ</a>
+                                </li>
+                                <li class="header-gene8">
+                                    <a class="dropdown-item" href="#">クラッシック</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <form action="header-search-form" class="d-flex mr-3 ms-3 p-1 form-inline my-2 my-lg-0">
+                        <input type="hidden" value="true" name="block">
+                        <input class="form-search_input" type="text" placeholder="プレイリスト検索">
+                        <input class="form-search btn btn-outline-light mr-3" type="submit" value="検索">
+                    </form>
+                    <div class="header_tool align-items-center me-2">
+                        <a href="/login" class="tool_login border-1 btn btn-outline-light px-4 py-2 ms-3">
+                            ログイン
                         </a>
+                        <a href="/regist" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
+                        会員登録
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="wrap">
+        <div class="d-flex justify-content-start">
+            <img src="{% static 'mypage/images/spotify.jpg' %}" alt="image-play" value="image-play" width="50" height="50" class="ms-3">
+            <h2 class="header-logo m-2 ps-1 mb-4">
+                Spotify プレイリスト作成サイト
+            </h2>
+        </div>
+        <!-- メニュー画面（連携） -->
+        <div class="row">
+            <div class="col-lg-2">
+                <form action="">
+                    <div class="artist_initial">
+                        <div>
+                            <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            アーティスト名
+                            </button>
+                        </div>
+                        <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">あ～</label>
+                            </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">か～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">さ～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">た～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">な～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">は～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ま～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">や～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ら～</label>
+                        </div>
+                        <div class="card card-body me-3 flex-row bg-secondary text-white">
+                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">わ～</label>
+                        </div>
+                    </div>
+                    <div class="play_counts">
+                        <div>
+                            <button class="btn btn-primary ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                                再生回数
+                            </button>
+                        </div>
+                        <div class="collapse multi-collapse1 ms-3" id="collapseExample1">
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">～1,000</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,001～10,000</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">10,001～100,000</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">100,001～1,000,000</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,000,001〜</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row small bg-secondary text-white">
+                                <input type="text" class="w-100">～<input type="text" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="release_date">
+                        <div>
+                            <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                                順序
+                            </button>
+                        </div>
+                        <div class="collapse multi-collapse2 my-2 ms-3 small w-53" id="collapseExample2">
+                            <div class="card card-body me-2 flex-row bg-secondary text-white">
+                                <input type="radio" name="release_date" id="new" class="form-checkbox me-3 p-2 flex-row"><label for="">新しい</label>
+                            </div>
+                            <div class="card card-body me-2 flex-row bg-secondary text-white">
+                                <input type="radio" name="release_date" id="new" class="form-checkbox me-3 p-2 flex-row"><label for="">古い</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="search-submit"> -->
+                    <div class="d-flex justify-content-start small ms-3 mb-2">
+                        <input class="search w-75" type="search" name="search" placeholder="キーワードを入力">
+                        <input class="form-search btn btn-primary" type="submit" value="検索">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- main -->
+        <!-- Artist名 -->
+        <div class="col-lg-8 bg-secondary text-white">
+            <table class="table me-3 bg-secondary text-white">
+                <colgroup span="7"></colgroup>
+                <tr>
+                    <th class="fs-6">#</th>
+                    <th class="fs-6">タイトル</th>
+                    <th></th>
+                    <th></th>
+                    <th class="fs-6">曲の長さ</th>
+                    <th class="fs-6">Artist</th>
+                    <th class="fs-6 text-truncate">プレイリスト追加</th>
+                </tr>
+                <tr>
+                    <td>1位</td>
+                    <td class="text-truncate" style="max-width:200px;">新時代新時代新時代新時代新時代新時代</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>2位</td>
+                    <td class="text-truncate" style="max-width:200px;">私は最強</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>4:18</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>3位</td>
+                    <td class="text-truncate" style="max-width:200px;">逆光-ウタ</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:58</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>4位</td>
+                    <td class="text-truncate" style="max-width:200px;">ウタカタララバイ</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>2:53</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>5位</td>
+                    <td class="text-truncate" style="max-width:200px;">Tot Musica</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:15</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>6位</td>
+                    <td class="text-truncate" style="max-width:200px;">ウィーアー</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>7位</td>
+                    <td class="text-truncate" style="max-width:200px;">ヒカリへ</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>8位</td>
+                    <td class="text-truncate" style="max-width:200px;">Believe</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>9位</td>
+                    <td class="text-truncate" style="max-width:200px;">私がいるよ</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+                <tr>
+                    <td>10位</td>
+                    <td class="text-truncate" style="max-width:200px;">しょうちのすけ</td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td>3:48</td>
+                    <td class="text-truncate" style="max-width:200px;">ado</td>
+                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-2 d-flex flex-column side-column">
+            <div class="user-title-rank list-group">
+                ユーザIDのプレイリスト
+            </div>
+            <form action="user-play-form" class="d-flex justify-content-end m-1 p-1">
+                <input type="hidden" value="true" name="block">
+                <input class="form-search btn btn-outline-light" type="submit" value="更新">
+            </form>
+            <div class="user-title-order d-flex flex-column">
+                <ul class="user-playlist list-group">
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
+                    </li>
+                    <li class="user-music list-group-item bg-secondary text-white">
+                        <div class="user-music-update text-truncate">
+                            楽曲名
+                        </div>
                     </li>
                 </ul>
-                <form action="header-search-form" class="d-flex m-3 p-1 form-inline my-2 my-lg-0">
-                    <input type="hidden" value="true" name="block">
-                    <input class="form-search_input" type="text" placeholder="プレイリスト検索">
-                    <input class="form-search btn btn-outline-secondary" type="submit" value="検索">
-                </form>
-                <div class="header_tool d-flex justify-content-end align-items-center button">
-                    <a href="/login" class="tool_login border-1 btn btn-outline-secondary border-outline-secondary px-4 py-2">
-                        ログイン
-                    </a>
-                    <a href="/regist" class="tool_register border-1 border-outline-secondary btn btn-outline-secondary px-4 py-2 ms-3">
-                    会員登録
-                    </a>
-                </div>
-                </div>
-            </nav>
+            </div>
+            <!-- プレイリストランキング -->
+            <div class="sub-title-rank list-group mt-5 ms-2">
+                プレイリストランキング
+            </div>
+            <div class="dropdown d-flex justify-content-end m-1 p-1">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                プルダウン
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">人気</a></li>
+                <li><a class="dropdown-item" href="#">お気にいり</a></li>
+                <li><a class="dropdown-item" href="#">楽曲数</a></li>
+                </ul>
+            </div>
+            <div class="sub-title-order d-flex flex-column">
+                <ul class="rank-sub-music list-group">
+                    <li class="top-sub-one list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-one">
+                            1位
+                        </div>
+                        <div class="title-sub-one ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-two list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-two">
+                            2位
+                        </div>
+                        <div class="title-sub-two ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-thr list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-thr">
+                            3位
+                        </div>
+                        <div class="title-sub-thr ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-fou list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-fou">
+                            4位
+                        </div>
+                        <div class="title-sub-fou ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-fiv list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-fiv">
+                            5位
+                        </div>
+                        <div class="title-sub-fiv ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-six list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-six">
+                            6位
+                        </div>
+                        <div class="title-sub-six ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-sev list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-sev">
+                            7位
+                        </div>
+                        <div class="title-sub-sev ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-eig list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-eig">
+                            8位
+                        </div>
+                        <div class="title-sub-eig ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-nin list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-nin">
+                            9位
+                        </div>
+                        <div class="title-sub-nin ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                    <li class="top-sub-ten list-group-item d-flex bg-secondary text-white">
+                        <div class="rank-sub-ten">
+                            10位
+                        </div>
+                        <div class="title-sub-ten ps-2 text-truncate">
+                            ユーザ名
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
         </div>
-        <div class="row header-model mb-5" id="modal_menu">
+    </div>
+    <!-- <footer></footer> -->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+    <script src="{% static 'mypage/js/index.js' %}"></script>
+</body>
+</html>
+        <!-- <div class="controll_panel d-flex justify-content-between">
+            <form action="header-search-form" class="d-flex m-3 p-1">
+                <input type="hidden" value="true" name="block">
+                <input class="form-search_input" type="text" placeholder="プレイリスト検索">
+                <input class="form-search btn btn-outline-secondary" type="submit" value="検索">
+            </form>
+        <div class="header_tool d-flex justify-content-end align-items-center button">
+            <a href="/login" class="tool_login border-1 btn btn-outline-secondary border-outline-secondary px-4 py-2">
+                ログイン
+            </a>
+            <a href="/regist" class="tool_register border-1 border-outline-secondary btn btn-outline-secondary px-4 py-2 ms-3">
+            会員登録
+            </a>
+        </div> -->
+    <!-- header -->
+        <!-- <div class="row header-model mb-5" id="modal_menu">
             <nav style="--bs-breadcrumb-divider: '';" aria-label="pankz">
                 <ul class="breadcrumb ms-2 ps-3">
                     <li class="breadcrumb-item btn btn-outline-secondary">
@@ -96,380 +501,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
-        <!-- メニュー画面（連携） -->
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <form action="">
-                            <div class="artist_initial">
-                                <div>
-                                    <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                    アーティスト名
-                                    </button>
-                                </div>
-                                <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">あ～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">か～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">さ～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">た～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">な～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">は～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ま～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">や～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ら～</label>
-                                    </div>
-                                    <div class="card card-body me-3 flex-row">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">わ～</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="play_counts">
-                                <div>
-                                    <button class="btn btn-primary ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                                    再生回数
-                                    </button>
-                                </div>
-                                <div class="collapse multi-collapse1 ms-3" id="collapseExample1">
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">～1,000</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,001～10,000</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">10,001～100,000</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">100,001～1,000,000</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,000,001〜</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row small">
-                                        <input type="text" class="w-100">～<input type="text" class="w-100">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="release_date">
-                                <div>
-                                    <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                                    順序
-                                    </button>
-                                </div>
-                                <div class="collapse multi-collapse2 my-2 ms-3 small w-53" id="collapseExample2">
-                                    <div class="card card-body me-2 flex-row">
-                                        <input type="radio" name="release_date" id="new" class="form-checkbox me-3 p-2 flex-row"><label for="">新しい</label>
-                                    </div>
-                                    <div class="card card-body me-2 flex-row">
-                                        <input type="radio" name="release_date" id="old" class="form-checkbox me-3 p-2 flex-row"><label for="">古い</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="search-submit"> -->
-                            <div class="d-flex justify-content-start small ms-3">
-                                <input class="search w-75" type="search" name="search" placeholder="キーワードを入力">
-                                <input class="form-search btn btn-primary" type="submit" value="検索">
-                            <!-- </div> -->
-                            </div>
-                        </form>
-                    </div>
-                    <!-- main -->
-                    <!-- Artist名 -->
-                    <div class="col-xs-6">
-                        Ado
-                        <table class="table">
-                            <colgroup span="7"></colgroup>
-                            <tr>
-                                <th>#</th>
-                                <th>タイトル</th>
-                                <th></th>
-                                <th></th>
-                                <th>曲の長さ</th>
-                                <th>Artist</th>
-                                <th>プレイリスト追加</th>
-                            </tr>
-                            <tr>
-                                <td>1位</td>
-                                <td class="text-truncate" style="max-width:200px;">新時代新時代新時代新時代新時代新時代</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>2位</td>
-                                <td class="text-truncate" style="max-width:200px;">私は最強</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>4:18</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>3位</td>
-                                <td class="text-truncate" style="max-width:200px;">逆光-ウタ</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:58</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>4位</td>
-                                <td class="text-truncate" style="max-width:200px;">ウタカタララバイ</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>2:53</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>5位</td>
-                                <td class="text-truncate" style="max-width:200px;">Tot Musica</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:15</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>6位</td>
-                                <td class="text-truncate" style="max-width:200px;">ウィーアー</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>7位</td>
-                                <td class="text-truncate" style="max-width:200px;">ヒカリへ</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>8位</td>
-                                <td class="text-truncate" style="max-width:200px;">Believe</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>9位</td>
-                                <td class="text-truncate" style="max-width:200px;">私がいるよ</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                            <tr>
-                                <td>10位</td>
-                                <td class="text-truncate" style="max-width:200px;">しょうちのすけ</td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                                <td>3:48</td>
-                                <td class="text-truncate" style="max-width:200px;">ado</td>
-                                <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 d-flex flex-column">
-                <div class="user-title-rank list-group">
-                    ユーザIDのプレイリスト
-                </div>
-                <form action="user-play-form" class="d-flex justify-content-end m-1 p-1">
-                    <input type="hidden" value="true" name="block">
-                    <input class="form-search btn btn-outline-secondary" type="submit" value="更新">
-                </form>
-                <div class="user-title-order w-75">
-                    <ul class="user-playlist list-group">
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                        <li class="user-music list-group-item">
-                            <div class="user-music-update text-truncate" style="max-width:200px;">
-                                楽曲名
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- プレイリストランキング -->
-                <div class="sub-title-rank list-group mt-5 ms-2">
-                    プレイリストランキング
-                </div>
-                <div class="dropdown d-flex justify-content-end m-1 p-1">
-                    <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    プルダウン
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">人気</a></li>
-                    <li><a class="dropdown-item" href="#">お気にいり</a></li>
-                    <li><a class="dropdown-item" href="#">楽曲数</a></li>
-                    </ul>
-                </div>
-                <div class="sub-title-order w-75">
-                    <ul class="rank-sub-music list-group">
-                        <li class="top-sub-one list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-one">
-                                1位
-                            </div>
-                            <div class="title-sub-one ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-two list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-two">
-                                2位
-                            </div>
-                            <div class="title-sub-two ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-thr list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-thr">
-                                3位
-                            </div>
-                            <div class="title-sub-thr ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-fou list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-fou">
-                                4位
-                            </div>
-                            <div class="title-sub-fou ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-fiv list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-fiv">
-                                5位
-                            </div>
-                            <div class="title-sub-fiv ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-six list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-six">
-                                6位
-                            </div>
-                            <div class="title-sub-six ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-sev list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-sev">
-                                7位
-                            </div>
-                            <div class="title-sub-sev ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-eig list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-eig">
-                                8位
-                            </div>
-                            <div class="title-sub-eig ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-nin list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-nin">
-                                9位
-                            </div>
-                            <div class="title-sub-nin ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                        <li class="top-sub-ten list-group-item d-flex justify-content-start">
-                            <div class="rank-sub-ten">
-                                10位
-                            </div>
-                            <div class="title-sub-ten ps-2 text-truncate" style="max-width:100px;">
-                                ユーザ名
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <footer></footer> -->
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
-</body>
-</html>
+        </div> -->
                 <!-- <div class="artist_name form-check">アーティスト名</div> -->
                         <!-- <div class="artist_initial">
                         <input class="form-check-input" type="checkbox" value="name1" id="flexCheckDefault"><label class="form-check-label" for="flexCheckDefault">あ〜</label>
