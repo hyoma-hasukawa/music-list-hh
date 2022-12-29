@@ -1,3 +1,11 @@
 table th {
     font-size: x-small;
 }
+.wrap {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.side_content {
+    position: sticky;
+    top: 50px;
+}
