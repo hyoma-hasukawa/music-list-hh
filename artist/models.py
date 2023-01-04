@@ -6,7 +6,7 @@ from django.db import models
 # イベントキー
 
 class Artist(models.Model):
-    id = models.BigAutoField("id")
+    id = models.BigAutoField("id", primary_key=True)
     name = models.CharField("aritst名", max_length=128)
     youtube = models.CharField("動画", max_length=128)
     live = models.CharField("ライブ", max_length=128)

@@ -23,6 +23,7 @@ urlpatterns = [
     path('artist/', include("artist.urls")),
     path('playlist/', include("playlist.urls")),
     path('mypage/', include("mypage.urls")),
+    path('accounts/', include('allauth.urls')),
 ]
 
 # if settings.DEBUG:

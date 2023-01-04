@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'artist.apps.ArtistConfig',
     'playlist.apps.PlaylistConfig',
     'mypage.apps.MypageConfig',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.spotify',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +119,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -131,3 +137,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
 # IMAGE_URL = "/images/"
+
+
+# ログイン・ログアウト時のリダイレクト先
+LOGIN_REDIRECT_URL = 'mypage.index'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# 認証方式を「メルアドとパスワード」に設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ユーザ名は使用しない
+ACCOUNT_USERNAME_REQUIRED = False
+
+# ユーザ登録時に確認メールを送信するか(none=送信しない, mandatory=送信する)
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True   # ユーザ登録にメルアド必須にする
