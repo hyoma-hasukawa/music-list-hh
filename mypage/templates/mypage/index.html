@@ -173,10 +173,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="search-submit"> -->
+                    <!-- 検索フォーム -->
                     <div class="d-flex justify-content-start small ms-3 mb-2">
-                        <input class="search w-75" type="search" name="search" placeholder="キーワードを入力">
-                        <input class="form-search btn btn-primary" type="submit" value="検索">
+                        <form action="" method="GET" action="{% url 'blog_app:index' %}">
+                            <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ request.GET.query }}">
+                            <button class="form-search btn btn-primary" type="submit" value="検索">
+                        </form>
                     </div>
                 </div>
             </form>
