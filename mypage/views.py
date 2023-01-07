@@ -13,17 +13,26 @@ def index(request):
     # query（入力内容）が存在する場合
     if query:
         # query（入力内容）をspotifyに検索する
-        posts = Post.objects.all().order_by('-created_at')
-        posts = posts.filter(
-        Q(title__icontains=query)|
-        Q(user__username__icontains=query)
-        ).distinct()
-    # query（入力内容）が存在しない場合
-    else:
-        posts = Post.objects.all().order_by('-created_at')  
-    return render(request, 'blog_app/index.html', {'posts': posts, 'query': query,})
+        client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
+        client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
+        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+        keyword = query
+        results = sp.search(q=keyword, limit=10, market="JP")
 
-# 検索ワードから楽曲orArtistを判断する 
+        for idx, track in enumerate(results['tracks']['items']):
+            print(idx + 1, track['name'])
+            print('audio    : ' + track['preview_url'])
+            print('cover art: ' + track['album']['images'][0]['url'])
+            print()
+        # query（入力内容）が存在しない場合
+        else:
+            print(idx)
+            # return render(request,"mypage/index.html")
+    
+    # else:
+    #     posts = Post.objects.all().order_by('-created_at')  
+    # return render(request, 'blog_app/index.html', {'posts': posts, 'query': query,})
+
 
 
 # lz_uri = 'spotify:artist:36QJpDe2go2KgaRleHCDTp'
@@ -65,8 +74,8 @@ def index(request):
 #         'URL' : result[i]['external_urls']['spotify'], 
 #         'URI' : result[i]['uri']}, ignore_index=True)
 # print(related_df)
-def index(request):
-    return render(request,"mypage/index.html")
+# def index(request):
+#     return render(request,"mypage/index.html")
 
 # import sys
 # import pprint
