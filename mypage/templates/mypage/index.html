@@ -92,7 +92,8 @@
         <!-- メニュー画面（連携） -->
         <div class="row">
             <div class="col-lg-2 side">
-                <form action="">
+                <!-- 自分自身の箇所にするときはactionを何も書かない -->
+                <form action="" method="GET">
                     <div class="artist_initial side_content">
                         <div>
                             <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -139,22 +140,22 @@
                         </div>
                         <div class="collapse multi-collapse1 ms-3" id="collapseExample1">
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">～1,000</label>
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small" name="play_count[]" value="1_000"><label for="">～1,000</label>
                             </div>
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,001～10,000</label>
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small" name="play_count[]" value="10_000"><label for="">1,001～10,000</label>
                             </div>
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">10,001～100,000</label>
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small" name="play_count[]" value="100_000"><label for="">10,001～100,000</label>
                             </div>
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">100,001～1,000,000</label>
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small" name="play_count[]" value="1_000_000"><label for="">100,001～1,000,000</label>
                             </div>
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small"><label for="">1,000,001〜</label>
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row small" name="play_count[]" value="10_000_000"><label for="">1,000,001〜</label>
                             </div>
                             <div class="card card-body me-2 flex-row small bg-secondary text-white">
-                                <input type="text" class="w-100">～<input type="text" class="w-100">
+                                <input type="text" class="w-100" name="play_count_min" value="">～<input type="text" class="w-100" name="play_count_max" value="">
                             </div>
                         </div>
                     </div>
@@ -175,10 +176,8 @@
                     </div>
                     <!-- 検索フォーム -->
                     <div class="d-flex justify-content-start small ms-3 mb-2">
-                        <form action="" method="GET" action="{% url 'blog_app:index' %}">
-                            <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ request.GET.query }}">
-                            <button class="form-search btn btn-primary" type="submit" value="検索">
-                        </form>
+                        <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ search_word }}">
+                        <button class="form-search btn btn-primary" type="submit" value="検索">
                     </div>
                 </div>
             </form>

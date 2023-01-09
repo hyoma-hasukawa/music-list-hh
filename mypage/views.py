@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-import sys
-import pprint
 import spotipy
+# 関数がimportされていなかった
+from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
-from django.db.models import Q
-
 
 # inputから検索結果を持ってくる
 def index(request):
     query = request.GET.get('search')
-    
+    play_count = request.GET.getlist('play_count[]')
     # query（入力内容）が存在する場合
     if query:
         # query（入力内容）をspotifyに検索する
@@ -18,16 +16,50 @@ def index(request):
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
         keyword = query
         results = sp.search(q=keyword, limit=10, market="JP")
-
         for idx, track in enumerate(results['tracks']['items']):
             print(idx + 1, track['name'])
-            print('audio    : ' + track['preview_url'])
-            print('cover art: ' + track['album']['images'][0]['url'])
-            print()
-        # query（入力内容）が存在しない場合
-        else:
-            print(idx)
+        return render(request,"mypage/index.html",context={"search_word":query})
+        # for idx, track in enumerate(results['tracks']['items']):
+        #     print(idx + 1, track['name'])
+        #     print('audio    : ' + track['preview_url'])
+        #     print('cover art: ' + track['album']['images'][0]['url'])
+        #     print()
             # return render(request,"mypage/index.html")
+    else:
+        # query（入力内容）が存在しない場合
+        # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
+        # print(idx)
+        return render(request,"mypage/index.html")
+
+# import spotipy
+# from spotipy.oauth2 import SpotifyClientCredentials
+# import sys
+# import pprint
+
+# if len(sys.argv) > 1:
+#         search_str = sys.argv[1]
+# else:
+#         search_str = 'Radiohead'
+
+# client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
+# client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
+# client_credentials_manager = spotipy.oauth2.SpotifyClientCredentials(client_id, client_secret)
+
+# sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+# result = sp.search(q='track:Radiohead', limit=10, offset=0, type='track', market=None) #sp.search(search_str)
+
+# id_list = []
+# for track in result['tracks']['items']:
+#         id = track['id']
+#         id_list.append(id)
+
+# features = sp.audio_features(id_list)
+# pprint.pprint(features)
+# print(idx)
+#         return render(request,"mypage/index.html")
+
+
     
     # else:
     #     posts = Post.objects.all().order_by('-created_at')  
