@@ -6,8 +6,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 # inputから検索結果を持ってくる
 def index(request):
-    query = request.GET.get('search')
-    play_count = request.GET.getlist('play_count[]')
+    query = request.POST.get('search')
+    play_count = request.POST.getlist('play_count[]')
     # query（入力内容）が存在する場合
     if query:
         # query（入力内容）をspotifyに検索する
@@ -27,6 +27,7 @@ def index(request):
             "items":items
         }
         return render(request,"mypage/index.html",context)
+
         # return render(request,"mypage/index.html",context={"search_word":query})
         # for idx, track in enumerate(results['tracks']['items']):
         #     print(idx + 1, track['name'])
@@ -39,6 +40,11 @@ def index(request):
         # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
         # print(idx)
         return render(request,"mypage/index.html")
+
+def form(request):
+    context = request.POST.get('context')
+    print(request.POST.get('context'))
+    return render(request, 'mypage/index.html',context)
 
 # import spotipy
 # from spotipy.oauth2 import SpotifyClientCredentials

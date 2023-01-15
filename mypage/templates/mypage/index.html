@@ -93,7 +93,8 @@
         <div class="row">
             <div class="col-lg-2 side">
                 <!-- 自分自身の箇所にするときはactionを何も書かない -->
-                <form action="" method="GET">
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %} 
                     <div class="artist_initial side_content">
                         <div>
                             <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -185,8 +186,7 @@
         <!-- main -->
         <!-- Artist名 -->
         <div class="col-lg-8 bg-secondary text-white">
-            <!-- {% for items in context %} -->
-            <table class="table me-3 bg-secondary text-white">
+            <table class="table me-3 bg-secondary text-white" action="{% url 'form' %}" method="post">
                 <colgroup span="7"></colgroup>
                 <tr>
                     <th class="fs-6">#</th>
@@ -199,7 +199,7 @@
                 </tr>
                 <tr>
                     <td>1位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.0}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.0 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -208,7 +208,7 @@
                 </tr>
                 <tr>
                     <td>2位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.1}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.1 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>4:18</td>
@@ -217,7 +217,7 @@
                 </tr>
                 <tr>
                     <td>3位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.2}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.2 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:58</td>
@@ -226,7 +226,7 @@
                 </tr>
                 <tr>
                     <td>4位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.3}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.3 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>2:53</td>
@@ -235,7 +235,7 @@
                 </tr>
                 <tr>
                     <td>5位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.4}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.4 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:15</td>
@@ -244,7 +244,7 @@
                 </tr>
                 <tr>
                     <td>6位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.5}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.5 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -253,7 +253,7 @@
                 </tr>
                 <tr>
                     <td>7位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.6}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.6 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -262,7 +262,7 @@
                 </tr>
                 <tr>
                     <td>8位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.7}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.7 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -271,7 +271,7 @@
                 </tr>
                 <tr>
                     <td>9位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.8}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.8 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -280,7 +280,7 @@
                 </tr>
                 <tr>
                     <td>10位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{items.9}}</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ items.9 }}</td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
                     <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
                     <td>3:48</td>
@@ -288,7 +288,6 @@
                     <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
                 </tr>
             </table>
-            <!-- {% endfor %} -->
         </div>
         <div class="col-lg-2 d-flex flex-column side-column">
             <div class="user-title-rank list-group">
