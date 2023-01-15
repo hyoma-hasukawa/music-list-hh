@@ -16,9 +16,18 @@ def index(request):
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
         keyword = query
         results = sp.search(q=keyword, limit=10, market="JP")
+        items=[]
         for idx, track in enumerate(results['tracks']['items']):
             print(idx + 1, track['name'])
-        return render(request,"mypage/index.html",context={"search_word":query})
+            # items = track['name']
+            # results+['tracks']+['items']+数字+['name']
+            items.append(track['name'])
+        context = {
+            "search_word":query,
+            "items":items
+        }
+        return render(request,"mypage/index.html",context)
+        # return render(request,"mypage/index.html",context={"search_word":query})
         # for idx, track in enumerate(results['tracks']['items']):
         #     print(idx + 1, track['name'])
         #     print('audio    : ' + track['preview_url'])
