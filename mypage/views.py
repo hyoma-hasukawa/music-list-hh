@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
+import math
 import spotipy
 # 関数がimportされていなかった
 from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 # inputから検索結果を持ってくる
 def index(request):
     query = request.POST.get('search')
-    play_count = request.POST.getlist('play_count[]')
+    page_num = request.POST.get('page_num') or "0"
+    # 現在のページ数が入る (例　p5 → int 4)
+    page_num = int(page_num)
+    # play_count = request.POST.getlist('play_count[]')
+    song_id = request.POST.get('song_id')
     # query（入力内容）が存在する場合
     if query:
         # query（入力内容）をspotifyに検索する
@@ -15,17 +22,66 @@ def index(request):
         client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
         keyword = query
-        results = sp.search(q=keyword, limit=10, market="JP")
+        results = sp.search(q=keyword, market="JP",offset=page_num*10)
         items=[]
+        # 楽曲数
+        total=results["tracks"]["total"] 
+        # 10項目出力するように制限
+        limit=results["tracks"]["limit"]
+        # 順位
+        offset=results["tracks"]["offset"]
+        # ページ数計算
+        pages=math.ceil(total/limit)
+        # ページのリスト出力
+        pages=[x for x in range(pages)]
+        try:
+            page_count = page_num
+        # 渡される値が整数でないとき
+        except PageNotAnInteger:
+            page_count = page_num(1)
+        # 最大ページ数を超えたときには空のページになる
+        except EmptyPage:
+            page_count = page_num(1)
         for idx, track in enumerate(results['tracks']['items']):
             print(idx + 1, track['name'])
             # items = track['name']
             # results+['tracks']+['items']+数字+['name']
-            items.append(track['name'])
+            print(track)
+            artist = sp.artist(track['artists'][0]['id'])
+            print(artist)
+            # 
+            sec = track["duration_ms"] // 1000
+            minites = sec//60
+            sec = sec%60
+            times="{:02}:{:02}".format(minites,sec)
+
+            # 「duration_ms」の分出力
+            # minse = (track['duration_ms'] // 1000 )
+            # min = int(track['duration_ms'] / 1000 / 60)
+            # 「duration_ms」の秒出力
+            # sec = int((minse - min)*60)
+            # sec_len = len(str(sec))
+            #  0埋め
+            # if sec_len==1:
+            #     sec=sec_int.zfill(1)
+            # else:
+            #     sec=sec_int
+            if len(artist['images']) > 0:
+                items.append({"track":track,"artist_image": artist['images'][0]['url'],"times":times})
+            else:
+                items.append({"track":track,"artist_image": 'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image',"times":times})
         context = {
+            # 検索した結果を受け取った
             "search_word":query,
-            "items":items
+            # "items":results['tracks']['items']
+            "items":items,
+            "pagelist":pages,
+            "offset":offset,
+            "page_count":page_count,
+            "total":total,
+            "page_num":page_num
         }
+        
         return render(request,"mypage/index.html",context)
 
         # return render(request,"mypage/index.html",context={"search_word":query})
@@ -35,16 +91,34 @@ def index(request):
         #     print('cover art: ' + track['album']['images'][0]['url'])
         #     print()
             # return render(request,"mypage/index.html")
-    else:
+    elif song_id:
         # query（入力内容）が存在しない場合
         # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
         # print(idx)
         return render(request,"mypage/index.html")
+    else:
+        return render(request,"mypage/index.html")
 
+
+# urlに飛ばしているのは「form」・「a」しかない。
 def form(request):
     context = request.POST.get('context')
     print(request.POST.get('context'))
     return render(request, 'mypage/index.html',context)
+
+
+# def paginate_queryset(request):
+#     page_num = request.POST.get('page_num') or "0"
+#     # 現在のページ数が入る (例　p5 → int 4)
+#     page_num = int(page_num)
+#     try:
+#         pagesa = Paginator.page(page_num)
+#     except PageNotAnInteger:
+#         pagesa = Paginator.page(1)
+#     except EmptyPage:
+#         pagesa = Paginator.page(1)
+#     return pagesa
+
 
 # import spotipy
 # from spotipy.oauth2 import SpotifyClientCredentials

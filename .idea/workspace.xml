@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="first commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mypage/static/mypage/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/static/mypage/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/templates/mypage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/templates/mypage/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,20 +97,14 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
           <line>8</line>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="4" />
+          <line>84</line>
+          <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="results['tracks']['items'][0]['artists']" />
-        <watch expression="request.upload_handlers" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

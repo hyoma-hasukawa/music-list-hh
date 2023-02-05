@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'artist/css/style.css' %}">
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" herf="{% static 'mypage/css/style.css' %}">
+<!-- <link rel="stylesheet" href="css/style.css"> -->
+<!-- <link rel="stylesheet" href="{% static 'mypage/css/style.css' %}"> -->
 </head>
 <body class="text-white bg-dark">
     <header>
@@ -197,98 +196,128 @@
                     <th class="fs-6">Artist</th>
                     <th class="fs-6 text-truncate">プレイリスト追加</th>
                 </tr>
+                <!-- ここから繰り返す 1位から10位まで -->
+                {% for item in items %}
                 <tr>
-                    <td>1位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.0 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
+                    <td>{{ forloop.counter|add:offset }}位</td>
+                    <td class="text-truncate" style="max-width:200px;">{{ item.track.name }}</td>
+                    <td><img src="{{ item.track.album.images.0.url }}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <!-- <td><img src="{{ item.preview_url }}" alt="image1-one" value="image1-one" width="100" height="100"></td> -->
+                    <td><img src="{{ item.artist_image }}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <!-- {% if item.sec_len == 1 %} -->
+                        <!-- <td>{{ item.min }}:{{ item.sec }}</td> -->
+                    <!-- {% else %} -->
+                        <td>{{ item.times }}</td>
+                    <!-- {% endif %} -->
+                    <td class="text-truncate" style="max-width:200px;">{{ item.track.artists.0.name }}</td>
+                    <td>
+                        <!-- 送信する場合はJavasCriptで記載する。 -->
+                        <form action="" method="post">
+                            <input type="checkbox" name="song_id" value="{{ item.track.id }}">
+                        </form>
+                    </td>
                 </tr>
-                <tr>
-                    <td>2位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.1 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>4:18</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>3位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.2 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:58</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>4位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.3 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>2:53</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>5位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.4 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:15</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>6位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.5 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>7位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.6 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>8位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.7 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>9位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.8 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
-                <tr>
-                    <td>10位</td>
-                    <td class="text-truncate" style="max-width:200px;">{{ items.9 }}</td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image1-one" value="image1-one" width="100" height="100"></td>
-                    <td><img src="{% static 'mypage/images/coppers.jpg' %}" alt="image-play" value="image-play" width="50" height="50"></td>
-                    <td>3:48</td>
-                    <td class="text-truncate" style="max-width:200px;">ado</td>
-                    <td><input type="checkbox" name="play-list-fou" value="play-list-fou"></td>
-                </tr>
+                <!-- ここまで繰り返す -->
+                {% endfor %}
             </table>
+            <!-- 回数分 -->
+            <!-- ページリストがあったら出力 -->
+            {% if pagelist %}
+                <!-- 前ページ  -->
+                <div style="display:inline-flex">
+                    <form action="" method="post">
+                        <!-- もしページが1ページ目なら -->
+                        {% if page_num == 0 %}
+                            <input type="submit" value="prev" disabled>
+                            <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="submit" name="page_num" value="{{ pagelist|first }}" disabled>
+                            <input type="submit" name="page_num" value="…" disabled>
+                            {% csrf_token %} 
+                        {% else %}
+                            <input type="submit" value="prev">
+                            <input type="submit" name="{{ pagelist|first }}" value="{{ pagelist|first }}">
+                            <input type="submit" name="page_num" value="…" disabled>
+                            <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="hidden" name="page_num" value="{{ page_num|add:'-1' }}">
+                            {% csrf_token %} 
+                        {% endif %}
+                        <!-- 現在のページ -->
+                        <input type="hidden" name="search" value="{{ search_word }}">
+                        <input type="submit" name="page_num" value="{{ page|add:'-1' }}">
+                        <input type="submit" name="page_num" value="{{ page_num }}" disabled>
+                        <input type="submit" name="page_num" value="{{ page|add:'1' }}">
+                        {% csrf_token %} 
+
+                        {% if page_num == pagelist|last %}
+                            <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="hidden" name="page_num" value="…">
+                            <input type="hidden" name="page_num" value="{{ page_num|last }}">
+                            <input type="submit" value="next" disabled>
+                            {% csrf_token %} 
+                        {% else %}
+                            <input type="submit" name="page_num" value="…" disabled>
+                            <input type="submit" name="{{ pagelist|last }}" value="{{ pagelist|last }}">
+                            <input type="submit" value="next">
+                            <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="hidden" name="page_num" value="{{ page_num|add:'1' }}">
+                            {% csrf_token %} 
+                        {% endif %}
+                    </form>
+                </div>
+            {% endif %}
         </div>
+            <!-- <form action="" method="post">
+                <input type="submit" value="{{ forloop.counter }}">
+                <input type="hidden" name="search" value="{{ search_word }}">
+                <input type="hidden" name="page_count" value="{{ page }}">
+                {% csrf_token %} 
+            </form> -->
+            <!-- {% if pagelist %} -->
+                <!-- 前ページ  -->
+                <!-- <div style="display:inline-flex">
+                        <form action="" method="post"> -->
+                            <!-- もしページが1ページ目なら -->
+                            <!-- {% if page_num == 0 %}
+                                <input type="submit" value="prev" disabled>
+                            {% else %}
+                                <input type="submit" value="prev">
+                            {% endif %} -->
+                            <!-- <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="hidden" name="page_num" value="{{ page_num|add:'-1' }}">
+                            {% csrf_token %}  -->
+                        <!-- </form>
+                    </div> -->
+                    <!-- ページ一覧 -->
+                    <!-- {% for page in pagelist %}
+                            <div style="display:inline-flex">
+                                <form action="" method="post">
+                                    {% if page == page_num %} -->
+                                        <!-- ボタンが押せなくなるようにする -->
+                                        <!-- <input type="submit" value="{{ forloop.counter }}" disabled>
+                                    {% else %}
+                                        <input type="submit" value="{{ forloop.counter }}">
+                                    {% endif %}
+                                    <input type="hidden" name="search" value="{{ search_word }}">
+                                    <input type="hidden" name="page_num" value="{{ page }}">
+                                    {% csrf_token %} 
+                                </form>
+                            </div>
+                        {% endfor %} -->
+                    <!-- 後ページ  -->
+                    <!-- <div style="display:inline-flex">
+                        <form action="" method="post">
+                            {% if page_num == pagelist|last %}
+                                <input type="submit" value="next" disabled>
+                            {% else %}
+                                <input type="submit" value="next">
+                            {% endif %}
+                            <input type="hidden" name="search" value="{{ search_word }}">
+                            <input type="hidden" name="page_num" value="{{ page_num|add:'1' }}">
+                            {% csrf_token %} 
+                        </form>
+                    </div>
+                {% endif %}
+        </div> -->
         <div class="col-lg-2 d-flex flex-column side-column">
             <div class="user-title-rank list-group">
                 ユーザIDのプレイリスト
@@ -455,7 +484,7 @@
     <!-- <footer></footer> -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+    <!-- <script src="js/index.js"></script> -->
     <script src="{% static 'mypage/js/index.js' %}"></script>
 </body>
 </html>
