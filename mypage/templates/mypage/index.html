@@ -227,41 +227,41 @@
                 <div style="display:inline-flex">
                     <form action="" method="post">
                         <!-- もしページが1ページ目なら -->
-                        {% if page_num == 0 %}
-                            <input type="submit" value="prev" disabled>
-                            <input type="hidden" name="search" value="{{ search_word }}">
+                        <input type="submit" value="prev" {% if page_num == pagelist|first %} disabled {% endif %}>
+                        <input type="hidden" name="search" value="{{ search_word }}">
+                        {% if page_num == pagelist|first %}
                             <input type="submit" name="page_num" value="{{ page_num }}" disabled>
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" name="page_num" value="{{ forloop.counter|add:'1' }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" name="page_num" value="{{ forloop.counter|add:'2' }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" value="…" disabled>
-                            {% csrf_token %} 
+                            <input type="submit" name="page_num" value="{{ page_num|add:'1' }}">
+                            <input type="submit" name="page_num" value="{{ page_num|add:'2' }}">
+                            {% csrf_token %}
+                        {% elif page_num == pagelist|first|add:"1" or page_num == pagelist|first|add:"2" %}
+                            {% if page_num == pagelist|first|add:"2" %}
+                                <input type="submit" name="page_num" value="{{ pagelist|first }}">
+                            {% endif %}
+                            <input type="submit" name="page_num" value="{{ page_num|add:'-1' }}">
+                            <input type="submit" name="page_num" value="{{ page_num }}" disabled>
+                            <input type="submit" name="page_num" value="{{ page_num|add:'1' }}">
+                            {% csrf_token %}
                         {% else %}
-                            <input type="submit" value="prev">
-                            <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="hidden" name="page_num" value="{{ page_num|add:'-1' }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" name="page_num" value="{{ pagelist|first }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" value="…" disabled>
+                            <input type="submit" name="page_num" value="0">
                             <!-- <input type="submit" name="{{ page_num|add:'-1' }}" value="{{ page_num|add:'-1' }}"> -->
-                            {% csrf_token %} 
+                            {% csrf_token %}
+                            <input type="submit" value="…" disabled>
                         {% endif %}
+
                     </form>
                 </div>
                 <div style="display:inline-flex">
                     <form action="" method="post">
                         <!-- 現在のページ -->
-                        {% if page_num != pagelist|first and page_num != pagelist|last  %}
+                        {% if page_num != pagelist|first and page_num != pagelist|first|add:"1" and page_num != pagelist|first|add:"2" and page_num != pagelist|last|add:'-2' and page_num != pagelist|last|add:'-1' and page_num != pagelist|last %}
                             <input type="submit" name="page_num" value="{{ page_num|add:'-1' }}">
                             <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="submit" name="page_num" value="{{ page_num }}" disabled>
                             <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="submit" name="page_num" value="{{ page_num|add:'1' }}">
                             <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" value="…" disabled>
                         {% csrf_token %} 
                         {% endif %}
                         <!-- <input type="submit" name="page_num" value="{{ page_num }}" disabled>
@@ -276,31 +276,44 @@
                 </div>
                 <div style="display:inline-flex">
                     <form action="" method="post">
+                        <!-- <input type="hidden" name="search" value="{{ search_word }}">
                         {% if page_num == pagelist|last %}
                             <input type="submit" name="page_num" value="{{ pagelist|last|add:'-2' }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="submit" name="page_num" value="{{ pagelist|last|add:'-1' }}">
-                            <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="submit" name="page_num" value="{{ pagelist|last }}" disabled>
-                            <input type="hidden" name="search" value="{{ search_word }}">
-                            <input type="submit" value="next" disabled>
                             {% csrf_token %} 
                         {% else %}
-                            <input type="hidden" name="search" value="{{ search_word }}">
                             <input type="submit" name="page_num" value="{{ pagelist|last }}">
                             {% csrf_token %} 
                         {% endif %}
-                        <!-- <input type="submit" value="next">
+                        <input type="submit" value="next">
                         <input type="hidden" name="search" value="{{ search_word }}">
                         <input type="hidden" name="page_num" value="{{ page_num|add:'1' }}"> -->
-                        {% csrf_token %} 
+
+                        <input type="hidden" name="search" value="{{ search_word }}">
+                        {% csrf_token %}
+                        {% if page_num == pagelist|last %}
+                            <input type="submit" name="page_num" value="{{ pagelist|last|add:'-2' }}">
+                            <input type="submit" name="page_num" value="{{ pagelist|last|add:'-1' }}">
+                            <input type="submit" name="page_num" value="{{ pagelist|last }}" disabled>
+                        {% elif page_num == pagelist|last|add:"-1" or page_num == pagelist|last|add:"-2" %}
+                            <input type="submit" name="page_num" value="{{ page_num|add:'-1' }}">
+                            <input type="submit" name="page_num" value="{{ page_num }}" disabled>
+                            <input type="submit" name="page_num" value="{{ page_num|add:'1' }}">
+                            {% if page_num == pagelist|last|add:"-2" %}
+                                <input type="submit" name="page_num" value="{{ pagelist|last }}">
+                            {% endif %}
+                        {% else %}
+                            <input type="submit" value="…" disabled>
+                            <input type="hidden" name="page_num" value="{{ page_num|add:'-1' }}">
+                            <input type="submit" name="page_num" value="{{ pagelist|last }}">
+                            <!-- <input type="submit" name="{{ page_num|add:'-1' }}" value="{{ page_num|add:'-1' }}"> -->
+                        {% endif %}
                     </form>
                 </div>
                 <div style="display:inline-flex">
                     <form action="" method="post">
-                        {% if page_num != pagelist|last %}
-                            <input type="submit" value="next">
-                        {% endif %}
+                        <input type="submit" value="next" {% if page_num == pagelist|last %} disabled {% endif %}>
                         <input type="hidden" name="search" value="{{ search_word }}">
                         <input type="hidden" name="page_num" value="{{ page_num|add:'1' }}">
                         {% csrf_token %} 

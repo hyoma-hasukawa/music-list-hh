@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # inputから検索結果を持ってくる
 def index(request):
     query = request.POST.get('search')
-    page_num = request.POST.get('page_num') or "0"
+    page_num = request.POST.get('page_num') or "1"
     # 現在のページ数が入る (例　p5 → int 4)
     page_num = int(page_num)
     # play_count = request.POST.getlist('play_count[]')
@@ -22,18 +22,24 @@ def index(request):
         client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
         keyword = query
-        results = sp.search(q=keyword, market="JP",offset=page_num*10)
+        results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
         items=[]
         # 楽曲数
-        total=results["tracks"]["total"] 
+        total=results["tracks"]["total"]
         # 10項目出力するように制限
         limit=results["tracks"]["limit"]
         # 順位
         offset=results["tracks"]["offset"]
         # ページ数計算
         pages=math.ceil(total/limit)
+        real_pages = 0
+        for page in range(pages):
+            res = sp.search(q=keyword, market="JP", offset=page*10)
+            if len(res["tracks"]["items"]) == 0:
+                break
+            real_pages = page
         # ページのリスト出力
-        pages=[x for x in range(pages)]
+        pages=[x + 1 for x in range(real_pages)]
         # try:
         #     page_count = page_num
         # 渡される値が整数でないとき
@@ -51,8 +57,8 @@ def index(request):
             print(artist)
             # 
             sec = track["duration_ms"] // 1000
-            minites = sec//60
-            sec = sec%60
+            minites = sec // 60
+            sec = sec % 60
             times="{:02}:{:02}".format(minites,sec)
 
             # 「duration_ms」の分出力
@@ -67,9 +73,9 @@ def index(request):
             # else:
             #     sec=sec_int
             if len(artist['images']) > 0:
-                items.append({"track":track,"artist_image": artist['images'][0]['url'],"times":times})
+                items.append({"track":track, "artist_image":artist['images'][0]['url'], "times":times})
             else:
-                items.append({"track":track,"artist_image": 'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image',"times":times})
+                items.append({"track":track, "artist_image":'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image', "times":times})
         context = {
             # 検索した結果を受け取った
             "search_word":query,
@@ -82,7 +88,7 @@ def index(request):
             "page_num":page_num
         }
         
-        return render(request,"mypage/index.html",context)
+        return render(request, "mypage/index.html", context)
 
         # return render(request,"mypage/index.html",context={"search_word":query})
         # for idx, track in enumerate(results['tracks']['items']):
@@ -95,9 +101,9 @@ def index(request):
         # query（入力内容）が存在しない場合
         # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
         # print(idx)
-        return render(request,"mypage/index.html")
+        return render(request, "mypage/index.html")
     else:
-        return render(request,"mypage/index.html")
+        return render(request, "mypage/index.html")
 
 
 # urlに飛ばしているのは「form」・「a」しかない。
