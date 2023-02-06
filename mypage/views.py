@@ -34,14 +34,14 @@ def index(request):
         pages=math.ceil(total/limit)
         # ページのリスト出力
         pages=[x for x in range(pages)]
-        try:
-            page_count = page_num
+        # try:
+        #     page_count = page_num
         # 渡される値が整数でないとき
-        except PageNotAnInteger:
-            page_count = page_num(1)
+        # except PageNotAnInteger:
+        #     page_count = page_num(1)
         # 最大ページ数を超えたときには空のページになる
-        except EmptyPage:
-            page_count = page_num(1)
+        # except EmptyPage:
+        #     page_count = page_num(1)
         for idx, track in enumerate(results['tracks']['items']):
             print(idx + 1, track['name'])
             # items = track['name']
@@ -77,7 +77,7 @@ def index(request):
             "items":items,
             "pagelist":pages,
             "offset":offset,
-            "page_count":page_count,
+            # "page_count":page_count,
             "total":total,
             "page_num":page_num
         }
