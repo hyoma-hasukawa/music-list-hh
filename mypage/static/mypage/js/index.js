@@ -1,33 +1,17 @@
-// document.getElementById("menu_btn").addEventListener("click", function(event){
-//     document.getElementById("modal_menu").classList.toggle("hidden")
-// });
+const inputElem = document.getElementById('example'); // input要素
+const currentValueElem = document.getElementById('current-value'); // 埋め込む先のspan要素
 
-// document.getElementById("modal_menu").addEventListener("click", function(event){
-//     document.getElementById("modal_menu").classList.toggle("hidden")
-// });
-// const MAX_LENGTH = 8;
-// for(let item of document.getElementsByClassName("limited_string")){
-//     if (item.textContent.length > MAX_LENGTH) {
-//         item.textContent = item.textContent.slice(0,MAX_LENGTH - 1) + "…";
-//     } else {
-//         item.textContent = item.textContent
-//     }
-// }
+// 現在の値をspanに埋め込む関数
+const setCurrentValue = (val) => {
+    currentValueElem.innerText = val;
+}
 
-// document.getElementById("initial_select").onclick = function(event){
-//     event.preventDefault();
-//     document.getElementById("initial_select_box").classList.toggle("hidden");
-// }
+// inputイベント時に値をセットする関数
+const rangeOnChange = (e) =>{
+    setCurrentValue(e.target.value);
+}
 
-// document.getElementById("counts_select").onclick = function(event){
-//     event.preventDefault();
-//     document.getElementById("counts_select_box").classList.toggle("hidden");
-// }
-
-// document.getElementById("menu_btn").addEventListener("click", function(event){
-//     document.getElementById("modal_menu").classList.toggle("hidden")
-// });
-
-// document.getElementById("modal_menu").addEventListener("click", function(event){
-//     document.getElementById("modal_menu").classList.toggle("hidden")
-// });
+window.onload = () => {
+  inputElem.addEventListener('input', rangeOnChange); // スライダー変化時にイベントを発火
+  setCurrentValue(inputElem.value); // ページ読み込み時に値をセット
+}

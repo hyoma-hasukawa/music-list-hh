@@ -15,8 +15,10 @@ def index(request):
     page_num = int(page_num)
     # play_count = request.POST.getlist('play_count[]')
     song_id = request.POST.get('song_id')
+    #　人気の楽曲ランキングを取得
+    pop = request.POST.get('populary')
     # query（入力内容）が存在する場合
-    if query:
+    if query or pop:
         # query（入力内容）をspotifyに検索する
         client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
         client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
@@ -107,10 +109,10 @@ def index(request):
 
 
 # urlに飛ばしているのは「form」・「a」しかない。
-def form(request):
-    context = request.POST.get('context')
-    print(request.POST.get('context'))
-    return render(request, 'mypage/index.html',context)
+# def form(request):
+#     context = request.POST.get('context')
+#     print(request.POST.get('context'))
+#     return render(request, 'mypage/index.html',context)
 
 
 # def paginate_queryset(request):
