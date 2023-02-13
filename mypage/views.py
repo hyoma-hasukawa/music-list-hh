@@ -109,10 +109,10 @@ def index(request):
 
 
 # urlに飛ばしているのは「form」・「a」しかない。
-# def form(request):
-#     context = request.POST.get('context')
-#     print(request.POST.get('context'))
-#     return render(request, 'mypage/index.html',context)
+def form(request):
+    context = request.POST.get('context')
+    print(request.POST.get('context'))
+    return render(request, 'mypage/index.html',context)
 
 
 # def paginate_queryset(request):
