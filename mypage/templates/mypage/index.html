@@ -135,17 +135,34 @@
                     <div class="play_counts">
                         <div>
                             <button class="btn btn-primary ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                                再生回数
+                                人気順
                             </button>
                         </div>
-                        <form action="" method="post">
-                            <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
-                                <input type="range" name="example" min="0" max="100" step="1" value="{{ populary }}">
-                                <!-- ここのjavascriptが効かないです。 -->
-                                <input type="range" id="example" min="1" max="10" step="1">
-                                <p>現在の値は<span id="current-value"></span>です</p>
-                            </div>
-                        </form>
+                        <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
+                            <form action="" method="post">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        有効
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        無効
+                                    </label>
+                                </div>
+                                <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
+                                    <!-- <input type="range" name="example" min="0" max="100" step="1" value="{{ populary }}"> -->
+                                    <input id="slider" type="range" min="0" max="100" value="{{ populary }}" step="1" name="{{ populary }}">
+                                    <span id="sliderValue"></span>
+                                    {% csrf_token %}
+                                    <!-- ここのjavascriptが効かないです。 -->
+                                    <!-- <input type="range" id="example" min="1" max="10" step="1">
+                                    <p>現在の値は<span id="current-value"></span>です</p> -->
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="release_date">
                         <div>
@@ -277,7 +294,6 @@
                         <input type="submit" value="next">
                         <input type="hidden" name="search" value="{{ search_word }}">
                         <input type="hidden" name="page_num" value="{{ page_num|add:'1' }}"> -->
-
                         <input type="hidden" name="search" value="{{ search_word }}">
                         {% csrf_token %}
                         {% if page_num == pagelist|last %}

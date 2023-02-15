@@ -87,7 +87,8 @@ def index(request):
             "offset":offset,
             # "page_count":page_count,
             "total":total,
-            "page_num":page_num
+            "page_num":page_num,
+            "populary":pop
         }
         
         return render(request, "mypage/index.html", context)
