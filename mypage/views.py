@@ -16,15 +16,20 @@ def index(request):
     # play_count = request.POST.getlist('play_count[]')
     song_id = request.POST.get('song_id')
     #　人気の楽曲ランキングを取得
-    pop = request.POST.get('populary')
+    populary = request.POST.get('populary')
+    # 有効・無効
+    valid = request.POST.get('str')
+    # 無効
+    # invalid = request.POST.get('flexRadioDefault')
     # query（入力内容）が存在する場合
-    if query or pop:
+    if query or valid:
         # query（入力内容）をspotifyに検索する
         client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
         client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
         keyword = query
-        results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
+        results = sp.search(q=keyword+populary, market="JP", offset=(page_num - 1) * 10)
+        # results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
         items=[]
         # 楽曲数
         total=results["tracks"]["total"]
@@ -87,8 +92,7 @@ def index(request):
             "offset":offset,
             # "page_count":page_count,
             "total":total,
-            "page_num":page_num,
-            "populary":pop
+            "page_num":page_num
         }
         
         return render(request, "mypage/index.html", context)
@@ -105,9 +109,81 @@ def index(request):
         # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
         # print(idx)
         return render(request, "mypage/index.html")
+    # 人気順で調べる場合（単体）
+    # elif invalid:
+    #     # query（入力内容）をspotifyに検索する
+    #     client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
+    #     client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
+    #     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+    #     results = sp.search(q=populary, market="JP", offset=(page_num - 1) * 10)
+    #     items=[]
+    #     # 楽曲数
+    #     total=results["tracks"]["total"]
+    #     # 10項目出力するように制限
+    #     limit=results["tracks"]["limit"]
+    #     # 順位
+    #     offset=results["tracks"]["offset"]
+    #     # ページ数計算
+    #     pages=math.ceil(total/limit)
+    #     real_pages = 0
+    #     for page in range(pages):
+    #         res = sp.search(q=populary, market="JP", offset=page*10)
+    #         if len(res["tracks"]["items"]) == 0:
+    #             break
+    #         real_pages = page
+    #     # ページのリスト出力
+    #     pages=[x + 1 for x in range(real_pages)]
+    #     # try:
+    #     #     page_count = page_num
+    #     # 渡される値が整数でないとき
+    #     # except PageNotAnInteger:
+    #     #     page_count = page_num(1)
+    #     # 最大ページ数を超えたときには空のページになる
+    #     # except EmptyPage:
+    #     #     page_count = page_num(1)
+    #     for idx, track in enumerate(results['tracks']['items']):
+    #         print(idx + 1, track['name'])
+    #         # items = track['name']
+    #         # results+['tracks']+['items']+数字+['name']
+    #         print(track)
+    #         artist = sp.artist(track['artists'][0]['id'])
+    #         print(artist)
+    #         # 
+    #         sec = track["duration_ms"] // 1000
+    #         minites = sec // 60
+    #         sec = sec % 60
+    #         times="{:02}:{:02}".format(minites,sec)
+
+    #         # 「duration_ms」の分出力
+    #         # minse = (track['duration_ms'] // 1000 )
+    #         # min = int(track['duration_ms'] / 1000 / 60)
+    #         # 「duration_ms」の秒出力
+    #         # sec = int((minse - min)*60)
+    #         # sec_len = len(str(sec))
+    #         #  0埋め
+    #         # if sec_len==1:
+    #         #     sec=sec_int.zfill(1)
+    #         # else:
+    #         #     sec=sec_int
+    #         if len(artist['images']) > 0:
+    #             items.append({"track":track, "artist_image":artist['images'][0]['url'], "times":times})
+    #         else:
+    #             items.append({"track":track, "artist_image":'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image', "times":times})
+    #     context = {
+    #         # 検索した結果を受け取った
+    #         "search_word":query,
+    #         # "items":results['tracks']['items']
+    #         "items":items,
+    #         "pagelist":pages,
+    #         "offset":offset,
+    #         # "page_count":page_count,
+    #         "total":total,
+    #         "page_num":page_num
+    #     }
+        
+    #     return render(request, "mypage/index.html")
     else:
         return render(request, "mypage/index.html")
-
 
 # urlに飛ばしているのは「form」・「a」しかない。
 def form(request):
@@ -115,6 +191,9 @@ def form(request):
     print(request.POST.get('context'))
     return render(request, 'mypage/index.html',context)
 
+def index(request):
+    jpop = request.POST.get('genre')
+    return render(request, 'mypage/index.html',jpop)
 
 # def paginate_queryset(request):
 #     page_num = request.POST.get('page_num') or "0"

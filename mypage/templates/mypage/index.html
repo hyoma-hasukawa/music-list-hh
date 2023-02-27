@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link active ms-2" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active ms-2" aria-current="page" href="{% url 'index' %}">Home</a>
                         </li>
                     </ul>
                     <div id="modal_menu" class="model-menu hidden me-auto mb-2 mb-lg-0">
@@ -32,34 +32,35 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="header-gene1">
-                                    <a class="dropdown-item active" href="#">J-POP</a>
+                                    <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
+                                    <a class="dropdown-item active" href="" name="jpop" value="{{ genre }}">J-POP</a>
                                 </li>
                                 <li class="header-gene2">
-                                    <a class="dropdown-item" href="#">アニメ</a>
+                                    <a class="dropdown-item" href="">アニメ</a>
                                 </li>
                                 <li class="header-gene3">
-                                    <a class="dropdown-item" href="#">HIPHOP/レゲエ</a>
+                                    <a class="dropdown-item" href="">HIPHOP/レゲエ</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li class="header-gene4">
-                                    <a class="dropdown-item" href="#">洋楽</a>
+                                    <a class="dropdown-item" href="">洋楽</a>
                                 </li>
                                 <li class="header-gene5">
-                                    <a class="dropdown-item" href="#">K-POP</a>
+                                    <a class="dropdown-item" href="">K-POP</a>
                                 </li>
                                 <li class="header-gene6">
-                                    <a class="dropdown-item" href="#">演歌</a>
+                                    <a class="dropdown-item" href="">演歌</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li class="header-gene7">
-                                    <a class="dropdown-item" href="#">ジャズ</a>
+                                    <a class="dropdown-item" href="">ジャズ</a>
                                 </li>
                                 <li class="header-gene8">
-                                    <a class="dropdown-item" href="#">クラッシック</a>
+                                    <a class="dropdown-item" href="">クラッシック</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,29 +140,28 @@
                             </button>
                         </div>
                         <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
-                            <form action="" method="post">
+                            <!-- <form id="pop" action="" method="post"> -->
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="popper" id="popper_check" value="valid" checked>
+                                    <label class="form-check-label" for="valid">
                                         有効
                                     </label>
+                                    {% csrf_token %}
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <input class="form-check-input" type="radio" name="popper" id="popper_check" value="invalid">
+                                    <label class="form-check-label" for="invalid">
                                         無効
                                     </label>
+                                    {% csrf_token %}
                                 </div>
                                 <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
                                     <!-- <input type="range" name="example" min="0" max="100" step="1" value="{{ populary }}"> -->
-                                    <input id="slider" type="range" min="0" max="100" value="{{ populary }}" step="1" name="{{ populary }}">
+                                    <input id="slider" type="range" min="0" max="100" value="{{ populary }}" step="1" name="populary">
                                     <span id="sliderValue"></span>
                                     {% csrf_token %}
-                                    <!-- ここのjavascriptが効かないです。 -->
-                                    <!-- <input type="range" id="example" min="1" max="10" step="1">
-                                    <p>現在の値は<span id="current-value"></span>です</p> -->
                                 </div>
-                            </form>
+                            <!-- </form> -->
                         </div>
                     </div>
                     <div class="release_date">
@@ -182,7 +182,7 @@
                     <!-- 検索フォーム -->
                     <div class="d-flex justify-content-start small ms-3 mb-2">
                         <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ search_word }}">
-                        <button class="btn-sm btn-primary" type="submit" value="検索">検索</button>
+                        <button class="btn-sm btn-primary" type="submit" value="検索" onclick="clickbtn()">検索</button>
                     </div>
                 </div>
             </form>
