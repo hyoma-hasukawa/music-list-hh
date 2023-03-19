@@ -6,7 +6,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 # Create your views here.
 def index(request):
     spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    resulta = current_user_top_artists(limit=20, offset=0, time_range='medium_term')
+    # resulta = current_user_top_artists(limit=20, offset=0, time_range='medium_term')
     # current_user_top_tracks(limit=20, offset=0, time_range='medium_term')
     # featured_playlists(locale=None, country=None, timestamp=None, limit=20, offset=0)
     return render(request,"artist/index.html")

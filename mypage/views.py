@@ -21,15 +21,21 @@ def index(request):
     valid = request.POST.get('str')
     # 無効
     # invalid = request.POST.get('flexRadioDefault')
+    genre = request.POST.get('genre')
+    # query（入力内容）をspotifyに検索する
+    client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
+    client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+    genres = sp.recommendation_genre_seeds()
+    context = {
+        "genres":genres["genres"]
+        }
     # query（入力内容）が存在する場合
-    if query or valid:
-        # query（入力内容）をspotifyに検索する
-        client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
-        client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
-        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
+    if query or genre:
         keyword = query
-        results = sp.search(q=keyword+populary, market="JP", offset=(page_num - 1) * 10)
-        # results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
+        if genre:
+            keyword = keyword + " genre:" + genre
+        results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
         items=[]
         # 楽曲数
         total=results["tracks"]["total"]
@@ -83,9 +89,9 @@ def index(request):
                 items.append({"track":track, "artist_image":artist['images'][0]['url'], "times":times})
             else:
                 items.append({"track":track, "artist_image":'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image', "times":times})
-        context = {
+        context.update({
             # 検索した結果を受け取った
-            "search_word":query,
+            "search_word":keyword,
             # "items":results['tracks']['items']
             "items":items,
             "pagelist":pages,
@@ -93,7 +99,7 @@ def index(request):
             # "page_count":page_count,
             "total":total,
             "page_num":page_num
-        }
+        }) 
         
         return render(request, "mypage/index.html", context)
 
@@ -108,7 +114,7 @@ def index(request):
         # query（入力内容）が存在しない場合
         # データを渡さずにレンダリングする。リストとなっている箇所を初期表示するか。ヒットチャートを出力するか。
         # print(idx)
-        return render(request, "mypage/index.html")
+        return render(request, "mypage/index.html", context)
     # 人気順で調べる場合（単体）
     # elif invalid:
     #     # query（入力内容）をspotifyに検索する
@@ -183,7 +189,7 @@ def index(request):
         
     #     return render(request, "mypage/index.html")
     else:
-        return render(request, "mypage/index.html")
+        return render(request, "mypage/index.html",context)
 
 # urlに飛ばしているのは「form」・「a」しかない。
 def form(request):
@@ -191,9 +197,9 @@ def form(request):
     print(request.POST.get('context'))
     return render(request, 'mypage/index.html',context)
 
-def index(request):
-    jpop = request.POST.get('genre')
-    return render(request, 'mypage/index.html',jpop)
+# def index(request):
+#     jpop = request.POST.get('genre')
+#     return render(request, 'mypage/index.html',jpop)
 
 # def paginate_queryset(request):
 #     page_num = request.POST.get('page_num') or "0"

@@ -30,38 +30,18 @@
                             <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 音楽ジャンル
                             </a>
+                            <form action="" id="genre_search" method="post">
+                                {% csrf_token %} 
+                            </form>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="header-gene1">
-                                    <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
-                                    <a class="dropdown-item active" href="" name="jpop" value="{{ genre }}">J-POP</a>
-                                </li>
-                                <li class="header-gene2">
-                                    <a class="dropdown-item" href="">アニメ</a>
-                                </li>
-                                <li class="header-gene3">
-                                    <a class="dropdown-item" href="">HIPHOP/レゲエ</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li class="header-gene4">
-                                    <a class="dropdown-item" href="">洋楽</a>
-                                </li>
-                                <li class="header-gene5">
-                                    <a class="dropdown-item" href="">K-POP</a>
-                                </li>
-                                <li class="header-gene6">
-                                    <a class="dropdown-item" href="">演歌</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li class="header-gene7">
-                                    <a class="dropdown-item" href="">ジャズ</a>
-                                </li>
-                                <li class="header-gene8">
-                                    <a class="dropdown-item" href="">クラッシック</a>
-                                </li>
+                                {% for genre in genres %}
+                                    <li>
+                                        <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
+                                        <!-- 色を白にする -->
+                                        <input class="dropdown-item active" href="" name="genre" value="{{ genre }}" form="search_form" type="submit">
+                                    </li>
+                                <!-- ここまで繰り返す -->
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -93,7 +73,7 @@
         <div class="row">
             <div class="col-lg-2 side">
                 <!-- 自分自身の箇所にするときはactionを何も書かない -->
-                <form action="{% url 'index' %}" method="post">
+                <form action="{% url 'index' %}" method="post" id="search_form">
                     {% csrf_token %} 
                     <div class="artist_initial side_content">
                         <div>
@@ -191,14 +171,15 @@
         <!-- Artist名 -->
         <div class="col-lg-8 bg-secondary text-white">
             <table class="table me-3 bg-secondary text-white" action="{% url 'form' %}" method="post">
-                <colgroup span="7"></colgroup>
+                <colgroup span="8"></colgroup>
                 <tr>
                     <th class="fs-6">#</th>
                     <th class="fs-6">タイトル</th>
-                    <th></th>
+                    <th>Album</th>
                     <th></th>
                     <th class="fs-6">曲の長さ</th>
-                    <th class="fs-6">Artist</th>
+                    <th class="fs-6">Artist名</th>
+                    <th class="fs-6">プレビュー</th>
                     <th class="fs-6 text-truncate">プレイリスト追加</th>
                 </tr>
                 <!-- ここから繰り返す 1位から10位まで -->
@@ -206,20 +187,21 @@
                 <tr>
                     <td>{{ forloop.counter|add:offset }}位</td>
                     <td class="text-truncate" style="max-width:200px;">{{ item.track.name }}</td>
-                    <td><img src="{{ item.track.album.images.0.url }}" alt="image1-one" value="image1-one" width="100" height="100"></td>
+                    <td><img src="{{ item.track.album.images.0.url }}" alt="image1-one" value="{{ item.track.album.external_urls.spotify }}" width="100" height="100" id="thumb_album"></td>
                     <!-- <td><img src="{{ item.preview_url }}" alt="image1-one" value="image1-one" width="100" height="100"></td> -->
-                    <td><img src="{{ item.artist_image }}" alt="image-play" value="image-play" width="50" height="50"></td>
+                    <td><img src="{{ item.artist_image }}" alt="image-play" value="{{ item.artist.0.external_urls.spotify }}" width="50" height="50"></td>
                     <!-- {% if item.sec_len == 1 %} -->
                         <!-- <td>{{ item.min }}:{{ item.sec }}</td> -->
                     <!-- {% else %} -->
                         <td>{{ item.times }}</td>
                     <!-- {% endif %} -->
                     <td class="text-truncate" style="max-width:200px;">{{ item.track.artists.0.name }}</td>
+                    <td><audio controls src="{{ item.track.preview_url }}" alt="image-play"></audio></td>
                     <td>
-                        <!-- 送信する場合はJavasCriptで記載する。 -->
-                        <form action="" method="post">
-                            <input type="checkbox" name="song_id" value="{{ item.track.id }}">
-                        </form>
+                    <!-- 送信する場合はJavasCriptで記載する。 -->
+                    <form action="" method="post">
+                        <input type="checkbox" name="song_id" value="{{ item.track.id }}">
+                    </form>
                     </td>
                 </tr>
                 <!-- ここまで繰り返す -->

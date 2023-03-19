@@ -37,6 +37,18 @@ function clickbtn() {
     }
     document.getElementById("span2").textContent = str;
 }
+
+// 画像クリック
+// const thub = document.getElementById("thumb_album").value;
+// divElement.ondblclick = function() {
+    
+// }
+// 画像クリック
+var imgElement = document.getElementById("thumb_album").value;
+imgElement.ondblclick = function() {
+	// 処理内容
+}
+
 // let popular = document.getElementById('pop');
 // popular.elements[1].checked = true;
 // popular.addEventListener('change', valueChange);
