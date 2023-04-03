@@ -44,10 +44,10 @@ function clickbtn() {
     
 // }
 // 画像クリック
-var imgElement = document.getElementById("thumb_album").value;
-imgElement.ondblclick = function() {
-	// 処理内容
-}
+// var imgElement = document.getElementById("thumb_album").value;
+// imgElement.ondblclick = function() {
+// 	// 処理内容
+// }
 
 // let popular = document.getElementById('pop');
 // popular.elements[1].checked = true;

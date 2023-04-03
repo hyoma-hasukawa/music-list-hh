@@ -33,9 +33,9 @@ def index(request):
     # query（入力内容）が存在する場合
     if query or genre:
         keyword = query
-        if genre:
-            keyword = keyword + " genre:" + genre
-        results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
+        # results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
+        # 201行目の内容を取ってきている
+        results = search_others(page_num,keyword,genre,sp)
         items=[]
         # 楽曲数
         total=results["tracks"]["total"]
@@ -196,6 +196,22 @@ def form(request):
     context = request.POST.get('context')
     print(request.POST.get('context'))
     return render(request, 'mypage/index.html',context)
+
+def search_others(page,keyword,genre,sp):
+    # ページ・キーワード・ジャンルで検索結果テーブルを検索する
+    db_search = Main.objects.all().values("keyword","genru","page_num")
+    # データがあったら、それを返す
+    if db_search:
+        results = db_search
+        return results
+    # データが無かったら、
+    else:
+        if genre:
+            keyword = keyword + " genre:" + genre
+        results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
+        # データベースに書き込む
+        results.save()
+        return results
 
 # def index(request):
 #     jpop = request.POST.get('genre')
