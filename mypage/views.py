@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 import math
 import spotipy
+# datetimeモジュールを使った現在の日付と時刻の取得
+import datetime
+# Json 
+import json
 # 関数がimportされていなかった
 from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from mypage.models import playlists, search_results,genre
 
 
 # inputから検索結果を持ってくる
@@ -197,21 +203,33 @@ def form(request):
     print(request.POST.get('context'))
     return render(request, 'mypage/index.html',context)
 
-def search_others(page,keyword,genre,sp):
-    # ページ・キーワード・ジャンルで検索結果テーブルを検索する
-    db_search = Main.objects.all().values("keyword","genru","page_num")
+def search_others(page,keyword,genre_name,sp):
+    tdy = datetime.date.today()  # 今日の日付の取得
+    tdy = tdy + datetime.timedelta(days=5)
+    # # ページ・キーワード・ジャンルで検索結果テーブルを検索する
+    db_search = search_results.objects.filter(keyword=keyword,genre=genre_name,page_num=page,updated_at__lte=tdy)
+    # db_search1 = search_results.objects.filter(keyword=keyword,updated_at__lte=tdy)
     # データがあったら、それを返す
     if db_search:
-        results = db_search
+        results = json.loads(db_search.contents)
         return results
     # データが無かったら、
     else:
-        if genre:
-            keyword = keyword + " genre:" + genre
-        results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
-        # データベースに書き込む
-        results.save()
+        if genre_name:
+            spotify_genres = genre.objects.filter(name=genre_name)
+            # 宿題 : spotify_genresは辞書のリストになっているので、nameをカンマくぎりの文字列にする。
+            keyword_g = keyword + " genre:" + spotify_genres
+            results = sp.search(q=keyword_g, market="JP", offset=(page - 1) * 10)
+            # データベースに書き込む
+            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = spotify_genres)
+            search_result.save()
+            
+        else:
+            results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
+            # データベースに書き込む
+            # results.save()
         return results
+
 
 # def index(request):
 #     jpop = request.POST.get('genre')
