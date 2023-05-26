@@ -4,38 +4,44 @@ from django.utils import timezone
 # Create your models here.
 
 # spotify_genre
+# class spotify_genre(models.Model):
+#     spotify_genre_id = models.AutoField(primary_key = True) 
+#     name = models.CharField('ジャンル',max_length=100)
+#     genre = models.ManyToManyField("type")
+
 class spotify_genre(models.Model):
     spotify_genre_id = models.AutoField(primary_key = True) 
     name = models.CharField('ジャンル',max_length=100)
-    genre = models.ManyToManyField(genre)
+    type = models.ManyToManyField("genre")
 
 # genre
+# class type(models.Model):
+#     type_id = models.AutoField(primary_key = True) 
+#     name = models.CharField('ジャンル',max_length=100)
+#     spotify_type = models.ManyToManyField("spotify_genre")
 class genre(models.Model):
     genre_id = models.AutoField(primary_key = True) 
     name = models.CharField('ジャンル',max_length=100)
-    spotify_genre = models.ManyToManyField(spotify_genre)
+    spotify_type = models.ManyToManyField("spotify_genre")
 
 # 検索結果_検索キーワード
 class search_results(models.Model):
     search_results_id = models.AutoField(primary_key = True) 
     contents = models.JSONField(blank=True, null=True)
     keyword = models.CharField('キーワード',max_length=1000)
-    genre_id = models.ForeignKey(genre,on_delete=models.CASCADE)
+    genre_id = models.ForeignKey(genre,on_delete=models.CASCADE,default=1)
     page_num = models.IntegerField()
     musics_id = models.CharField('楽曲名', max_length=100)
     artists_id = models.CharField('アーティスト名', max_length=100)
     # auto_now_add はインスタンスの作成(DBにINSERT)する度に更新
     # created_at = models.DateTimeField('作成日時',auto_now_add=True,default=timezone.now)
-    created_at = models.DateTimeField(auto_now_add=True,default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     # auto_now=Trueの場合はモデルインスタンスを保存する度に現在の時間で更新
     # updated_at = models.DateTimeField('更新日時',auto_now=True,default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True,default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
 
     # def __str__(self):
     #     return self.keyword
-
-
-
 
 # genre to spotify
 # class genre_spotify(models.Model):

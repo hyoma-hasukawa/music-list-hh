@@ -223,10 +223,11 @@ def search_others(page,keyword,genre_name,sp):
             # データベースに書き込む
             search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = spotify_genres)
             search_result.save()
-            
         else:
             results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
             # データベースに書き込む
+            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
+            search_result.save()
             # results.save()
         return results
 
