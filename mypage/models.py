@@ -12,7 +12,7 @@ from django.utils import timezone
 class spotify_genre(models.Model):
     spotify_genre_id = models.AutoField(primary_key = True) 
     name = models.CharField('ジャンル',max_length=100)
-    type = models.ManyToManyField("genre")
+    # type = models.ManyToManyField("genre")
 
 # genre
 # class type(models.Model):

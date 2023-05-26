@@ -98,18 +98,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
-          <line>14</line>
+          <line>15</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
-          <line>97</line>
-          <option name="timeStamp" value="111" />
+          <line>35</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
-          <line>209</line>
-          <option name="timeStamp" value="112" />
+          <line>222</line>
+          <option name="timeStamp" value="118" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -120,11 +120,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="results['tracks']['items'][0]['preview_url']" language="Python" />
-        <watch expression="results['tracks']['items'][0]['preview_url']" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

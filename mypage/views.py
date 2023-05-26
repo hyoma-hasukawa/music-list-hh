@@ -10,7 +10,7 @@ from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from mypage.models import playlists, search_results,genre
+from mypage.models import playlists, search_results,genre,spotify_genre
 
 
 # inputから検索結果を持ってくる
@@ -27,21 +27,23 @@ def index(request):
     valid = request.POST.get('str')
     # 無効
     # invalid = request.POST.get('flexRadioDefault')
-    genre = request.POST.get('genre')
+    genre_name = request.POST.get('genre')
     # query（入力内容）をspotifyに検索する
     client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
     client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
-    genres = sp.recommendation_genre_seeds()
+    # genres = sp.recommendation_genre_seeds()
+    genres = genre.objects.all()
     context = {
-        "genres":genres["genres"]
+        # "genres":genres["genres"]
+        "genres":[x.name for x in genres]
         }
     # query（入力内容）が存在する場合
-    if query or genre:
+    if query or genre_name:
         keyword = query
         # results = sp.search(q=keyword, market="JP", offset=(page_num - 1) * 10)
         # 201行目の内容を取ってきている
-        results = search_others(page_num,keyword,genre,sp)
+        results = search_others(page_num,keyword,genre_name,sp)
         items=[]
         # 楽曲数
         total=results["tracks"]["total"]
@@ -207,7 +209,7 @@ def search_others(page,keyword,genre_name,sp):
     tdy = datetime.date.today()  # 今日の日付の取得
     tdy = tdy + datetime.timedelta(days=5)
     # # ページ・キーワード・ジャンルで検索結果テーブルを検索する
-    db_search = search_results.objects.filter(keyword=keyword,genre=genre_name,page_num=page,updated_at__lte=tdy)
+    db_search = search_results.objects.filter(keyword=keyword,genre_id__name=genre_name,page_num=page,updated_at__lte=tdy)
     # db_search1 = search_results.objects.filter(keyword=keyword,updated_at__lte=tdy)
     # データがあったら、それを返す
     if db_search:
@@ -216,9 +218,12 @@ def search_others(page,keyword,genre_name,sp):
     # データが無かったら、
     else:
         if genre_name:
-            spotify_genres = genre.objects.filter(name=genre_name)
+            # spotify_genres = genre.objects.filter(name=genre_name)
+            # spotify_genres = spotify_genre.objects.filter(genre__name=genre_name)
+            spotify_genres = genre.objects.filter(name=genre_name).first().spotify_type.all()
             # 宿題 : spotify_genresは辞書のリストになっているので、nameをカンマくぎりの文字列にする。
-            keyword_g = keyword + " genre:" + spotify_genres
+            spotify_genres_k = ",".join([item.name for item in spotify_genres])
+            keyword_g = keyword + " genre:" + spotify_genres_k
             results = sp.search(q=keyword_g, market="JP", offset=(page - 1) * 10)
             # データベースに書き込む
             search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = spotify_genres)
