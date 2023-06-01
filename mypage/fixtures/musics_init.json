@@ -1,0 +1,95 @@
+[
+    {
+        "model": "users",
+        "pk": "1",
+        "fields": {
+        "name": "Tanaka Tarou",
+        "spotify_account": "tanaka@gmail.com"
+        }
+    },
+    {
+        "model": "users",
+        "pk": "2",
+        "fields": {
+        "name": "Maeda Kouske",
+        "spotify_account": "Maeda@gmail.com"
+        }
+    },
+    {
+        "model": "playlists",
+        "pk": "1",
+        "fields": {
+        "name": "Official髭男dism",
+        "user_id": "1",
+        "Pubulic": "true",
+        "description": "",
+        "created_at": "",
+        "updated_at": ""
+        }
+    },
+    {
+        "model": "musics_in_playlist",
+        "pk": "1",
+        "fields": {
+        "playlists_id": "1",
+        "music_id": "1",
+        "musics_images": "",
+        "music_uri": ""
+        }
+    },
+    {
+        "model": "musics",
+        "pk": "1",
+        "fields": {
+        "name": "115万キロのフィルム",
+        "artist_id": "1",
+        "spotify_uuid": "1"
+        }
+    },
+    {
+        "model": "aritsts",
+        "pk": "1",
+        "fields": {
+        "name": "Official髭男dism",
+        "artist_images": "",
+        "artist_uri": ""
+        }
+    },
+    {
+        "model": "search_results",
+        "pk": "1",
+        "fields": {
+        "contents": "",
+        "keyword": "",
+        "genre_id": "",
+        "page_num": "",
+        "music_id": "",
+        "artists_id": "",
+        "created_at": "",
+        "updated_at": ""
+        }
+    },
+    {
+        "model": "genre",
+        "pk": "3",
+        "fields": {
+        "name": "レゲエ/ヒップホップ・ラップ"
+        }
+    },
+    {
+        "model": "genre_to_spotify",
+        "pk": "1",
+        "fields": {
+        "genre_id": "1",
+        "spotify_genre_id": "1"
+    }
+    },
+    {
+        "model": "spotify_genre",
+        "pk": "1",
+        "fields": {
+        "id": "1",
+        "name": ""
+    }
+    }
+]
