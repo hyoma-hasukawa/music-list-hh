@@ -1,3 +1,17 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "editor.snippetSuggestions": "top",
+    "editor.suggest.showKeywords": false,
+    "[python]": {
+        "editor.wordBasedSuggestions": true
+    },
+    "python.linting.enabled": true,
+    "python.languageServer": "Pylance",
+    "python.analysis.completeFunctionParens": true,
+    "python.autoComplete.extraPaths": [
+        "/Users/9758hyoma/projects/django/spotify/venv/lib/python3.10/site-packages"
+        ],
+        "python.analysis.extraPaths": [
+            "/Users/9758hyoma/projects/django/spotify/venv/lib/python3.10/site-packages"
+        ]
 }

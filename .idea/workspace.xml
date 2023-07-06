@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="first commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/fixtures/musics_init.json" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/fixtures/musics_init.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/templates/mypage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/templates/mypage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mypage/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,6 +102,16 @@
           <url>file://$PROJECT_DIR$/mypage/views.py</url>
           <line>15</line>
           <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mypage/views.py</url>
+          <line>209</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mypage/views.py</url>
+          <line>216</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
