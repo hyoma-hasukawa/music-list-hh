@@ -55,7 +55,8 @@ def index(request):
         pages=math.ceil(total/limit)
         real_pages = 0
         for page in range(pages):
-            res = sp.search(q=keyword, market="JP", offset=page*10)
+            # res = sp.search(q=keyword, market="JP", offset=page*10)
+            res = search_others(page+1,keyword,genre_name,sp)
             if len(res["tracks"]["items"]) == 0:
                 break
             real_pages = page
@@ -210,6 +211,7 @@ def search_others(page,keyword,genre_name,sp):
     tdy = tdy + datetime.timedelta(days=5)
     # # ページ・キーワード・ジャンルで検索結果テーブルを検索する
     db_search = search_results.objects.filter(keyword=keyword,genre_id__name=genre_name,page_num=page,updated_at__lte=tdy)
+    db_search = db_search.get() if db_search.count() > 0 else None
     # db_search1 = search_results.objects.filter(keyword=keyword,updated_at__lte=tdy)
     # データがあったら、それを返す
     if db_search:
@@ -220,19 +222,20 @@ def search_others(page,keyword,genre_name,sp):
         if genre_name:
             # spotify_genres = genre.objects.filter(name=genre_name)
             # spotify_genres = spotify_genre.objects.filter(genre__name=genre_name)
-            spotify_genres = genre.objects.filter(name=genre_name).first().spotify_type.all()
+            genre_id = genre.objects.filter(name=genre_name).first()
+            spotify_genres = genre_id.spotify_type.all()
             # 宿題 : spotify_genresは辞書のリストになっているので、nameをカンマくぎりの文字列にする。
             spotify_genres_k = ",".join([item.name for item in spotify_genres])
             keyword_g = keyword + " genre:" + spotify_genres_k
             results = sp.search(q=keyword_g, market="JP", offset=(page - 1) * 10)
             # データベースに書き込む
-            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = spotify_genres)
-            search_result.save()
+            # search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = genre_id)
+            # search_result.save()
         else:
             results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
             # データベースに書き込む
-            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
-            search_result.save()
+            # search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
+            # search_result.save()
             # results.save()
         return results
 

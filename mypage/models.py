@@ -82,7 +82,7 @@ class musics(models.Model):
     musics_id = models.AutoField(primary_key = True)
     name = models.CharField('音楽名',max_length=100)
     aritist_id = models.ForeignKey(artists,on_delete=models.CASCADE)
-    spotify_uuid = models.UUIDField()
+    spotify_uuid = models.CharField(max_length=100)
 
 # musics_in_playlist
 class musics_in_playlist(models.Model):

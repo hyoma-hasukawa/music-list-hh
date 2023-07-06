@@ -1,6 +1,6 @@
 [
     {
-        "model": "users",
+        "model": "mypage.users",
         "pk": "1",
         "fields": {
         "name": "Tanaka Tarou",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "users",
+        "model": "mypage.users",
         "pk": "2",
         "fields": {
         "name": "Maeda Kouske",
@@ -16,80 +16,71 @@
         }
     },
     {
-        "model": "playlists",
-        "pk": "1",
-        "fields": {
-        "name": "Official髭男dism",
-        "user_id": "1",
-        "Pubulic": "true",
-        "description": "",
-        "created_at": "",
-        "updated_at": ""
-        }
-    },
-    {
-        "model": "musics_in_playlist",
+        "model": "mypage.playlists",
         "pk": "1",
         "fields": {
         "playlists_id": "1",
-        "music_id": "1",
-        "musics_images": "",
-        "music_uri": ""
+        "name": "Official髭男dism",
+        "user_id": "1",
+        "Public": "True",
+        "description": ""
         }
     },
     {
-        "model": "musics",
+        "model": "mypage.musics_in_playlist",
+        "pk": "1",
+        "fields": {
+        "playlists_id": "1",
+        "musics_id": "1",
+        "musics_images": "",
+        "musics_uri": ""
+        }
+    },
+    {
+        "model": "mypage.musics",
         "pk": "1",
         "fields": {
         "name": "115万キロのフィルム",
-        "artist_id": "1",
+        "aritist_id": "1",
         "spotify_uuid": "1"
         }
     },
     {
-        "model": "aritsts",
+        "model": "mypage.artists",
         "pk": "1",
         "fields": {
         "name": "Official髭男dism",
-        "artist_images": "",
-        "artist_uri": ""
+        "aritsts_images": "",
+        "aritsts_uri": ""
         }
     },
     {
-        "model": "search_results",
+        "model": "mypage.search_results",
         "pk": "1",
         "fields": {
         "contents": "",
         "keyword": "",
-        "genre_id": "",
-        "page_num": "",
-        "music_id": "",
-        "artists_id": "",
-        "created_at": "",
-        "updated_at": ""
+        "genre_id": "1",
+        "page_num": "1",
+        "musics_id": "1",
+        "artists_id": "1",
+        "created_at": "2023-06-02 10:11",
+        "updated_at": "2023-06-02 10:11"
         }
     },
     {
-        "model": "genre",
+        "model": "mypage.genre",
         "pk": "3",
         "fields": {
         "name": "レゲエ/ヒップホップ・ラップ"
         }
     },
     {
-        "model": "genre_to_spotify",
+        "model": "mypage.spotify_genre",
         "pk": "1",
         "fields": {
-        "genre_id": "1",
-        "spotify_genre_id": "1"
-    }
-    },
-    {
-        "model": "spotify_genre",
-        "pk": "1",
-        "fields": {
-        "id": "1",
+        "spotify_genre_id": "1",
         "name": ""
-    }
+        }
     }
 ]

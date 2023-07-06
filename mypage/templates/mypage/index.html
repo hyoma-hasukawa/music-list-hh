@@ -27,22 +27,23 @@
                     </ul>
                     <div id="modal_menu" class="model-menu hidden me-auto mb-2 mb-lg-0">
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 音楽ジャンル
-                            </a>
+                            </a> -->
                             <form action="" id="genre_search" method="post">
                                 {% csrf_token %} 
                             </form>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+                            <select name="genre" id="" form="search_form" class="nav-link dropdown-toggle text-white bg-dark ms-3">
+                                <option value="" selected>ジャンルを選択してください</option>
                                 {% for genre in genres %}
-                                    <li>
-                                        <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
-                                        <!-- 色を白にする -->
-                                        <input class="dropdown-item active" href="" name="genre" value="{{ genre }}" form="search_form" type="submit">
-                                    </li>
+                                    <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
+                                    <!-- 色を白にする -->
+                                    <option class="dropdown-item active" value="{{ genre }}">{{ genre }}</option>
                                 <!-- ここまで繰り返す -->
                                 {% endfor %}
-                            </ul>
+                            <!-- </ul> -->
+                            </select>
                         </div>
                     </div>
                     <form action="header-search-form" class="d-flex mr-3 ms-3 p-1 form-inline my-2 my-lg-0">
@@ -78,10 +79,27 @@
                     <div class="artist_initial side_content">
                         <div>
                             <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            アーティスト名
+                            検索種別
                             </button>
                         </div>
                         <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">アルバム</label>
+                            </div>
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">アーティスト</label>
+                            </div>
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">プレイリスト</label>
+                            </div>
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">トラック</label>
+                            </div>
+                            <div class="card card-body me-3 flex-row bg-secondary text-white">
+                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">オーディオブック</label>
+                            </div>
+                        </div>
+                        <!-- <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
                             <div class="card card-body me-3 flex-row bg-secondary text-white">
                                 <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">あ～</label>
                             </div>
@@ -112,7 +130,7 @@
                         <div class="card card-body me-3 flex-row bg-secondary text-white">
                             <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">わ～</label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="play_counts">
                         <div>
                             <button class="btn btn-primary ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
