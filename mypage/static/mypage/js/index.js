@@ -38,6 +38,15 @@ function clickbtn() {
     document.getElementById("span2").textContent = str;
 }
 
+function addPlaylist(id,name){
+    const li = `<li class="user-music list-group-item bg-secondary text-white">
+                    <div class="user-music-update text-truncate">
+                            ${name}
+                            <input type="hidden" name="music_id[]" value="${id}">
+                    </div>
+                </li>`
+    document.getElementById("myplaylist").insertAdjacentHTML('beforeend',li);
+}
 // 画像クリック
 // const thub = document.getElementById("thumb_album").value;
 // divElement.ondblclick = function() {

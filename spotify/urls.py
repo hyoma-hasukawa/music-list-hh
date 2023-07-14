@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.shortcuts import redirect
 # from django.comf.urls.static import static
 
 urlpatterns = [
+    path('',lambda x:redirect('/mypage/')),
     path('admin/', admin.site.urls),
     #djangoにURLが入った
     path('artist/', include("artist.urls")),

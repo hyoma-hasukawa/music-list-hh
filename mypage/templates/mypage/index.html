@@ -217,9 +217,10 @@
                     <td><audio controls src="{{ item.track.preview_url }}" alt="image-play"></audio></td>
                     <td>
                     <!-- 送信する場合はJavasCriptで記載する。 -->
-                    <form action="" method="post">
-                        <input type="checkbox" name="song_id" value="{{ item.track.id }}">
-                    </form>
+<!--                    <form action="" method="post">-->
+                        <button class="btn btn-secondary" onclick="addPlaylist('{{ item.track.id }}','{{ item.track.name }}')">追加</button>
+<!--                        <input type="checkbox" name="song_id" value="{{ item.track.id }}">-->
+<!--                    </form>-->
                     </td>
                 </tr>
                 <!-- ここまで繰り返す -->
@@ -386,57 +387,57 @@
                 <input class="form-search btn btn-outline-light" type="submit" value="更新">
             </form>
             <div class="user-title-order d-flex flex-column">
-                <ul class="user-playlist list-group">
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
-                    <li class="user-music list-group-item bg-secondary text-white">
-                        <div class="user-music-update text-truncate">
-                            楽曲名
-                        </div>
-                    </li>
+                <ul id="myplaylist" class="user-playlist list-group">
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
+<!--                        <div class="user-music-update text-truncate">-->
+<!--                            楽曲名-->
+<!--                        </div>-->
+<!--                    </li>-->
                 </ul>
             </div>
             <!-- プレイリストランキング -->
