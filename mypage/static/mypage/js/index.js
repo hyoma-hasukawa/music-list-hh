@@ -42,6 +42,7 @@ function addPlaylist(id,name,artists){
     const li = `<li class="user-music list-group-item bg-secondary text-white">
                     <div class="user-music-update text-truncate">
                             <p>${name}</p>
+                            <p>${artists}</p>
                             <input type="hidden" name="music_id[]" value="${id}">
                     </div>
                 </li>`
