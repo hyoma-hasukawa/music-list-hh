@@ -38,10 +38,10 @@ function clickbtn() {
     document.getElementById("span2").textContent = str;
 }
 
-function addPlaylist(id,name){
+function addPlaylist(id,name,artists){
     const li = `<li class="user-music list-group-item bg-secondary text-white">
                     <div class="user-music-update text-truncate">
-                            ${name}
+                            <p>${name}</p>
                             <input type="hidden" name="music_id[]" value="${id}">
                     </div>
                 </li>`

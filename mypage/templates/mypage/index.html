@@ -218,7 +218,7 @@
                     <td>
                     <!-- 送信する場合はJavasCriptで記載する。 -->
 <!--                    <form action="" method="post">-->
-                        <button class="btn btn-secondary" onclick="addPlaylist('{{ item.track.id }}','{{ item.track.name }}')">追加</button>
+                        <button class="btn btn-secondary" onclick="addPlaylist('{{ item.track.id }}','{{ item.track.name }}','{{ item.track.artists.0.name }}')">追加</button>
 <!--                        <input type="checkbox" name="song_id" value="{{ item.track.id }}">-->
 <!--                    </form>-->
                     </td>
