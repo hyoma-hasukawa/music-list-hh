@@ -232,9 +232,14 @@
                 <!-- 前ページ  -->
                 <div style="display:inline-flex">
                     <form action="" method="post">
+                        {% csrf_token %}
                         <!-- もしページが1ページ目なら -->
                         <input type="submit" value="prev" {% if page_num == pagelist|first %} disabled {% endif %}>
                         <input type="hidden" name="search" value="{{ search_word }}">
+                        {% for genre in search_genres %}
+                        <input type="hidden" name="genre[]" value="{{ genre }}">
+                        {% endfor %}
+                    </form>
                         {% if page_num == pagelist|first %}
                             <input type="submit" name="page_num" value="{{ page_num }}" disabled>
                             <input type="submit" name="page_num" value="{{ page_num|add:'1' }}">
@@ -255,8 +260,6 @@
                             {% csrf_token %}
                             <input type="submit" value="…" disabled>
                         {% endif %}
-
-                    </form>
                 </div>
                 <div style="display:inline-flex">
                     <form action="" method="post">

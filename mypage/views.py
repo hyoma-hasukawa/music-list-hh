@@ -107,7 +107,9 @@ def index(request):
             "offset":offset,
             # "page_count":page_count,
             "total":total,
-            "page_num":page_num
+            "page_num":page_num,
+            # sppotify_genreを送る
+            "search_genres": genre.objects.filter(name=genre_name).get().spotify_type.all()
         }) 
         
         return render(request, "mypage/index.html", context)
