@@ -7,7 +7,9 @@ def index(request):
         new_playlist = playlists()
         new_playlist.name = request.POST.get('playlist_name')
         new_playlist.user_id = 1
-        new_playlist.playlist_id = request.user
+        #user_id 
+        # new_playlist.playlists_id = request.user
+        # new_playlist.playlists_id_id = request.user.id
         new_playlist.playlists_id_id = 1
         new_playlist.save()
         for music_id in request.POST.getlist('music_id'):

@@ -71,6 +71,7 @@ class playlists(models.Model):
 
 # aritsts
 class artists(models.Model):
+    artist_uuid = models.CharField('Aritist_UUID',max_length=100,default="")
     aritsts_id = models.AutoField(primary_key = True)
     name = models.CharField('アーティスト名',max_length=100)
     aritsts_images = models.URLField()

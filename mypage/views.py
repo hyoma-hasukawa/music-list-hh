@@ -10,7 +10,7 @@ from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from mypage.models import playlists, search_results,genre,spotify_genre
+from mypage.models import playlists, search_results,genre,spotify_genre,musics,artists
 
 
 # inputから検索結果を持ってくる
@@ -77,7 +77,6 @@ def index(request):
             print(track)
             artist = sp.artist(track['artists'][0]['id'])
             print(artist)
-            # 
             sec = track["duration_ms"] // 1000
             minites = sec // 60
             sec = sec % 60
@@ -215,10 +214,11 @@ def search_others(page,keyword,genre_name,sp):
     db_search = search_results.objects.filter(keyword=keyword,genre_id__name=genre_name,page_num=page,updated_at__lte=tdy)
     db_search = db_search.get() if db_search.count() > 0 else None
     # db_search1 = search_results.objects.filter(keyword=keyword,updated_at__lte=tdy)
+    results = []
     # データがあったら、それを返す
     if db_search:
         results = json.loads(db_search.contents)
-        return results
+        # return results
     # データが無かったら、
     else:
         if genre_name:
@@ -247,7 +247,28 @@ def search_others(page,keyword,genre_name,sp):
                 search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
                 search_result.save()
             # results.save()
-        return results
+    for result in results["tracks"]["items"]:
+        artists_sub = sp.artist(result['artists'][0]['id'])
+        aritist_image = artists_sub["images"][0]["url"] if len(artists_sub["images"]) > 0 else 'https://placehold.jp/3d4070/ffffff/150x150.png?text=no%20image'
+        artist,created = artists.objects.get_or_create(
+            artist_uuid = result["artists"][0]["id"],
+            name = result["artists"][0]["name"],
+            aritsts_images = aritist_image,
+            aritsts_uri = result["artists"][0]["uri"]
+        )
+        music, created = musics.objects.update_or_create(
+            name = result["name"],
+            spotify_uuid = result["id"],
+            musics_images = result["album"]["images"][0]["url"],
+            musics_uri = result["preview_url"],
+            aritist_id = artist
+        )
+        # music = musics.objects.filter(spotify_uuid=result.id)
+        # if music.length == 0:
+        #     music = musics()
+        #     music.spotify_uuid = result.id
+        #     music.name = result.name
+    return results
 
 def playlist(request):
     playlists = request.POST.get('play')
