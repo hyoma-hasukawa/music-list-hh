@@ -385,7 +385,7 @@
             <div class="user-title-rank list-group">
                 <input type="text" name="playlist_name" value="ユーザIDのプレイリスト" form="to_playlist">
             </div>
-            <form id="to_playlist" action="{% url 'playlist_index' %}" class="d-flex justify-content-end m-1 p-1" method="post">
+            <form id="to_playlist" action="{% url 'playlist_index' %}" class="d-flex justify-content-end m-1 p-1" method="post" value="{{ play }}">
                 <input type="hidden" value="true" name="block">
                 <input class="form-search btn btn-outline-light" type="submit" value="更新">
                 {% csrf_token %}

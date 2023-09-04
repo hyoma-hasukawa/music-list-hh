@@ -229,18 +229,30 @@ def search_others(page,keyword,genre_name,sp):
             # 宿題 : spotify_genresは辞書のリストになっているので、nameをカンマくぎりの文字列にする。
             spotify_genres_k = ",".join([item.name for item in spotify_genres])
             keyword_g = keyword + " genre:" + spotify_genres_k
-            results = sp.search(q=keyword_g, market="JP", offset=(page - 1) * 10)
-            # データベースに書き込む
-            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = genre_id)
-            search_result.save()
+            if search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy,genre_id = genre_id):
+                results = search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy,genre_id = genre_id)
+                results = json.loads(results.contents)
+            else:
+                results = sp.search(q=keyword_g, market="JP", offset=(page - 1) * 10)
+                # データベースに書き込む
+                search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page,genre_id = genre_id)
+                search_result.save()
         else:
-            results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
-            # データベースに書き込む
-            search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
-            search_result.save()
+            if search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy):
+                results = search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy)
+                results = json.loads(results.contents)
+            else:
+                results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
+                # データベースに書き込む
+                search_result = search_results(contents = json.dumps(results),keyword = keyword,page_num = page)
+                search_result.save()
             # results.save()
         return results
 
+def playlist(request):
+    playlists = request.POST.get('play')
+    form = MemberForm()
+    return render(request, 'playlist/index.html',context)
 
 # def index(request):
 #     jpop = request.POST.get('genre')

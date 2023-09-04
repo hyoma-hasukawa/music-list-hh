@@ -44,7 +44,7 @@ function addPlaylist(id,name,artists){
                         <div class="d-flex flex-column">
                             <div class="text-truncate">Title : ${name}</div>
                             <div class="text-truncate">Artists : ${artists}</div>
-                            <input form="to_playlist" type="hidden" name="music_id[]" value="${id}">
+                            <input form="to_playlist" type="hidden" name="music_id" value="${id}">
                         </div>
                         <button class="btn btn-secondary btn-sm mt-2 ms-1 close-icon" value="削除" onClick="getElement(event);">×</button>
                     </div>

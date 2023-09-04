@@ -60,7 +60,7 @@ class playlists(models.Model):
     playlists_id = models.ForeignKey(users,on_delete=models.CASCADE)
     name = models.CharField('プレイリストネーム',max_length=100)
     user_id = models.IntegerField()
-    Public = models.BooleanField()
+    Public = models.BooleanField(default=True)
     description = models.TextField()
     # auto_now_add はインスタンスの作成(DBにINSERT)する度に更新
     created_at = models.DateTimeField(default=timezone.now)
