@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="20230715_授業後">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlist/templates/playlist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/playlist/templates/playlist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotify/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,11 +123,6 @@
           <line>15</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mypage/views.py</url>
-          <line>258</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -140,6 +136,7 @@
       <configuration name="PythonConfigurationType">
         <watch expression="new_playlist.playlists_id_id" />
         <watch expression="results['tracks']['items']" />
+        <watch expression="result" />
       </configuration>
     </watches-manager>
   </component>

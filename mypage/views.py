@@ -260,7 +260,7 @@ def search_others(page,keyword,genre_name,sp):
             name = result["name"],
             spotify_uuid = result["id"],
             musics_images = result["album"]["images"][0]["url"],
-            musics_uri = result["preview_url"],
+            musics_uri = result["preview_url"] if result["preview_url"] else "",
             aritist_id = artist
         )
         # music = musics.objects.filter(spotify_uuid=result.id)

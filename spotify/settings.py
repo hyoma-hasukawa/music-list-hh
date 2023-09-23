@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'spotify.urls'
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'spotify.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,3 +158,5 @@ TIME_ZONE = 'Asia/Tokyo'
 
 # タイムゾーンを使用するかどうか
 USE_TZ = True
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
