@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlist/templates/playlist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/playlist/templates/playlist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlist/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/playlist/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlist/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spotify/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/settings.py" afterDir="false" />
     </list>
@@ -123,6 +124,11 @@
           <line>15</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mypage/views.py</url>
+          <line>274</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -132,12 +138,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="new_playlist.playlists_id_id" />
-        <watch expression="results['tracks']['items']" />
-        <watch expression="result" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

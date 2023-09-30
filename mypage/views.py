@@ -108,7 +108,7 @@ def index(request):
             "total":total,
             "page_num":page_num,
             # sppotify_genreを送る
-            "search_genres": genre.objects.filter(name=genre_name).get().spotify_type.all()
+            "search_genres": genre.objects.filter(name=genre_name).get().spotify_type.all() if genre.objects.filter(name=genre_name) else list("")
         }) 
         
         return render(request, "mypage/index.html", context)
@@ -239,7 +239,7 @@ def search_others(page,keyword,genre_name,sp):
                 search_result.save()
         else:
             if search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy):
-                results = search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy)
+                results = search_results.objects.filter(keyword=keyword,page_num=page,created_at__lte =tdy).first()
                 results = json.loads(results.contents)
             else:
                 results = sp.search(q=keyword, market="JP", offset=(page - 1) * 10)
