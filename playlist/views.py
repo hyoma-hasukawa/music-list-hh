@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mypage.models import playlists,musics,users
+from mypage.models import playlists,musics,users,musics_in_playlist
 # Create your views here.
 from pprint import pprint 
 # ログイン
@@ -24,7 +24,8 @@ def index(request):
         #     new_playlist.playlists_id = users()
         new_playlist.save()
         for music_id in request.POST.getlist('music_id'):
-            music = musics()
+            music = musics.objects.filter(spotify_uuid=music_id).first()
+            new_playlist.music.add(music.musics_id)
     # プレイリスト一覧を取ってくる user_id指定
     all_playlist = playlists.objects.filter(user_id=request.user.id)
     # all_playlist = playlists.objects.all()

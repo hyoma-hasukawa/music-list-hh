@@ -55,20 +55,6 @@ class users(models.Model):
     name = models.CharField('ユーザ名',max_length=100)
     spotify_account = models.CharField('ユーザアカウント',max_length=100)
 
-# playlist
-class playlists(models.Model):
-    playlists_id = models.ForeignKey(users,on_delete=models.CASCADE)
-    name = models.CharField('プレイリストネーム',max_length=100)
-    user_id = models.IntegerField()
-    Public = models.BooleanField(default=True)
-    description = models.TextField()
-    # auto_now_add はインスタンスの作成(DBにINSERT)する度に更新
-    created_at = models.DateTimeField(default=timezone.now)
-    # created_at = models.DateTimeField('作成日時',auto_now_add=True,default=timezone.now)
-    # auto_now=Trueの場合はモデルインスタンスを保存する度に現在の時間で更新
-    # updated_at = models.DateTimeField('更新日時',auto_now=True,default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
-
 # aritsts
 class artists(models.Model):
     artist_uuid = models.CharField('Aritist_UUID',max_length=100,default="")
@@ -86,6 +72,22 @@ class musics(models.Model):
     spotify_uuid = models.CharField(max_length=100)
     musics_images = models.URLField(default="")
     musics_uri = models.URLField(default="")
+
+# playlist
+class playlists(models.Model):
+    playlists_id = models.ForeignKey(users,on_delete=models.CASCADE)
+    name = models.CharField('プレイリストネーム',max_length=100)
+    user_id = models.IntegerField()
+    Public = models.BooleanField(default=True)
+    description = models.TextField()
+    # auto_now_add はインスタンスの作成(DBにINSERT)する度に更新
+    created_at = models.DateTimeField(default=timezone.now)
+    # created_at = models.DateTimeField('作成日時',auto_now_add=True,default=timezone.now)
+    # auto_now=Trueの場合はモデルインスタンスを保存する度に現在の時間で更新
+    # updated_at = models.DateTimeField('更新日時',auto_now=True,default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
+    music = models.ManyToManyField(to=musics)
+
 
 # musics_in_playlist
 class musics_in_playlist(models.Model):

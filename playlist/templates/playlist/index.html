@@ -52,12 +52,18 @@
                         <input class="form-search btn btn-outline-light mr-3" type="submit" value="検索">
                     </form>
                     <div class="header_tool align-items-center me-2">
-                        <a href="/login" class="tool_login border-1 btn btn-outline-light px-4 py-2 ms-3">
-                            ログイン
-                        </a>
-                        <a href="/regist" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
-                        会員登録
-                        </a>
+                        {% if not user.is_authenticated %}
+                            <a href="/accounts/login" class="tool_login border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                ログイン
+                            </a>
+                            <a href="/regist" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                会員登録
+                            </a>
+                        {% else %}
+                            <a href="/accounts/logout" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                ログアウト
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -86,7 +92,13 @@
                     <tr>
                         <td>{{ playlist.id }}</td>
                         <td>{{ playlist.name }}</td>
-                        <td>{{ playlist.music }}</td>
+                        <td>
+                            <ul>
+                                {% for music in playlist.music.all %}
+                                    <li>{{music.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                         <td>{{ playlist.Public}}</td>
                         <td><a href="{% url "playlist_edit" playlist.id %}">編集</a></td>
                         <td><a href="{% url "playlist_register" %}">登録</a></td>
