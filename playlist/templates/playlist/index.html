@@ -15,7 +15,7 @@
     <header>
         <div class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand ms-2" href="#">Spotify</a>
+                <a class="navbar-brand ms-2" href="https://open.spotify.com/intl-ja">Spotify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -77,31 +77,43 @@
             </h2>
         </div>
         <!-- playlist  -->
-        <div class="flex-row bg-secondary text-white me-4 ms-4">
-            <table class="table me-3 ms-3 bg-secondary text-white w-100" action="{% url 'form' %}" method="post">
-                <colgroup span="6"></colgroup>
+        <div class="flex-row bg-secondary text-white me-4 ms-4 table-responsive">
+            <table class="table me-3 ms-3 bg-secondary text-white w-100 text-nowrap" action="{% url 'form' %}" method="post">
+                <colgroup span="7"></colgroup>
                 <tr class="flex-row">
-                    <th class="fs-6">id</th>
-                    <th class="fs-6">プレイリスト名</th>
-                    <th class="fs-6">楽曲名一覧</th>
-                    <th class="fs-6">公開/非公開</th>
-                    <th class="fs-6">編集</th>
-                    <th class="fs-6">登録</th>
+                    <th class="fs-7">id</th>
+                    <th class="fs-7">プレイリスト名</th>
+                    <th class="fs-7">楽曲名一覧</th>
+                    <th class="fs-7">公開/非公開</th>
+                    <th class="fs-7"></th>
+                    <th class="fs-7"></th>
+                    <th class="fs-7"></th>
                 </tr>
                 {% for playlist in all_playlist %}
                     <tr>
                         <td>{{ playlist.id }}</td>
-                        <td>{{ playlist.name }}</td>
-                        <td>
-                            <ul>
+                        <td class="text-truncate" style="max-width:200px;">{{ playlist.name }}</td>
+                        <td class="text-truncate" style="max-width:200px;">
+                            <ul class="overflow-y-scroll">
                                 {% for music in playlist.music.all %}
-                                    <li>{{music.name}}</li>
+                                    <li class="list-unstyled">{{music.name}}</li>
                                 {% endfor %}
                             </ul>
                         </td>
-                        <td>{{ playlist.Public}}</td>
-                        <td><a href="{% url "playlist_edit" playlist.id %}">編集</a></td>
-                        <td><a href="{% url "playlist_register" %}">登録</a></td>
+                        <td class="text-left">{{ playlist.Public}}</td>
+                        <td class="text-left"><a class="tool_edit border-1 btn btn-secondary" href="{% url "playlist_edit" playlist.id %}">編集</a></td>
+                        <td class="text-left"><a class="tool_register border-1 btn btn-secondary" href="{% url "playlist_register" %}">登録</a></td>
+                        <td class="text-left"><a class="tool_delete border-1 btn btn-secondary">削除</a></td>
+                        <!-- <td>
+                            <select name="" id="">
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
+                            <form action="" id="append" method="post">
+                                {% csrf_token %} 
+                            </form>
+                        </td> -->
                     </tr>
                 {% endfor %}
                 

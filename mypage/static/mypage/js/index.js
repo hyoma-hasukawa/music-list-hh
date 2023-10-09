@@ -42,8 +42,8 @@ function addPlaylist(id,name,artists){
     const li = `<li class="user-music list-group-item bg-secondary text-white">
                     <div class="user-music-update d-flex justify-content-between">
                         <div class="d-flex flex-column">
-                            <div class="text-truncate">Title : ${name}</div>
-                            <div class="text-truncate">Artists : ${artists}</div>
+                            <div class="text-truncate" style="max-width:150px;">Title : ${name}</div>
+                            <div class="text-truncate" style="max-width:150px;">Artists : ${artists}</div>
                             <input form="to_playlist" type="hidden" name="music_id" value="${id}">
                         </div>
                         <button class="btn btn-secondary btn-sm mt-2 ms-1 close-icon" value="削除" onClick="getElement(event);">×</button>

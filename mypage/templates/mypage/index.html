@@ -15,7 +15,7 @@
     <header>
         <div class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand ms-2" href="#">Spotify</a>
+                <a class="navbar-brand ms-2" href="https://open.spotify.com/intl-ja">Spotify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -193,8 +193,8 @@
         </div>
         <!-- main -->
         <!-- Artist名 -->
-        <div class="col-lg-8 bg-secondary text-white">
-            <table class="table me-3 bg-secondary text-white" action="{% url 'form' %}" method="post">
+        <div class="col-lg-8 bg-secondary text-white table-responsive">
+            <table class="table me-3 bg-secondary text-white text-nowrap" action="{% url 'form' %}" method="post">
                 <colgroup span="8"></colgroup>
                 <tr>
                     <th class="fs-6">#</th>
@@ -397,58 +397,7 @@
                 {% csrf_token %}
             </form>
             <div class="user-title-order d-flex flex-column">
-                <ul id="myplaylist" class="user-playlist list-group">
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li class="user-music list-group-item bg-secondary text-white">-->
-<!--                        <div class="user-music-update text-truncate">-->
-<!--                            楽曲名-->
-<!--                        </div>-->
-<!--                    </li>-->
-                </ul>
+                <ul id="myplaylist" class="user-playlist list-group"></ul>
             </div>
             <!-- プレイリストランキング -->
             <div class="sub-title-rank list-group mt-5 ms-2">
