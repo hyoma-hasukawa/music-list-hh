@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="20230715_授業後">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/static/mypage/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/static/mypage/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mypage/static/mypage/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/static/mypage/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mypage/templates/mypage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mypage/templates/mypage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotify/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
