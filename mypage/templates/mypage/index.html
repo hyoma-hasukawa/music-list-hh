@@ -8,12 +8,22 @@
     <title>Document</title>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="css/style.css"> -->
 <link rel="stylesheet" href="{% static 'mypage/css/style.css' %}">
 </head>
 <body class="text-white bg-dark">
     <header>
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="is-loading hidden">
+            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden" >Loading...</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-start">
+            <img src="{% static 'mypage/images/spotify.jpg' %}" alt="image-play" value="image-play" width="50" height="50" class="ms-3">
+            <h2 class="header-logo mt-2 ps-2">
+                Spotify_プレイリスト作成サイト
+            </h2>
+        </div>
+        <!-- <div class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand ms-2" href="https://open.spotify.com/intl-ja">Spotify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,27 +35,6 @@
                             <a class="nav-link active ms-2" aria-current="page" href="{% url 'index' %}">Home</a>
                         </li>
                     </ul>
-                    <div id="modal_menu" class="model-menu hidden me-auto mb-2 mb-lg-0">
-                        <div class="nav-item dropdown">
-                            <!-- <a class="nav-link dropdown-toggle text-white bg-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                音楽ジャンル
-                            </a> -->
-                            <form action="" id="genre_search" method="post">
-                                {% csrf_token %} 
-                            </form>
-                            <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-                            <select name="genre" id="" form="search_form" class="nav-link dropdown-toggle text-white bg-dark ms-3">
-                                <option value="" selected>ジャンルを選択してください</option>
-                                {% for genre in genres %}
-                                    <!-- <a class="dropdown-item active" href="{% url 'index' %}" onclick="document.form_analysys.submit();">J-POP</a> -->
-                                    <!-- 色を白にする -->
-                                    <option class="dropdown-item active" value="{{ genre }}">{{ genre }}</option>
-                                <!-- ここまで繰り返す -->
-                                {% endfor %}
-                            <!-- </ul> -->
-                            </select>
-                        </div>
-                    </div>
                     <form action="header-search-form" class="d-flex mr-3 ms-3 p-1 form-inline my-2 my-lg-0">
                         <input type="hidden" value="true" name="block">
                         <input class="form-search_input" type="text" placeholder="プレイリスト検索">
@@ -67,130 +56,90 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid text-right justify-content-end">
+                <button class="navbar-toggler btn btn-outline-light navbar-dark bg-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-flex offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <!-- <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link active ms-2" aria-current="page" href="{% url 'index' %}">Home</a>
+                            </li>
+                        </ul> -->
+                        <!-- <div id="modal_menu" class="model-menu hidden me-auto mb-2 mb-lg-0">
+                            <div class="nav-item dropdown">
+                                <form action="" id="genre_search" method="post">
+                                    {% csrf_token %} 
+                                </form>
+                                <select name="genre" id="" form="search_form" class="nav-link dropdown-toggle text-white bg-dark ms-3">
+                                    <option value="" selected>ジャンルを選択してください</option>
+                                    {% for genre in genres %}
+                                        <option class="dropdown-item active" value="{{ genre }}">{{ genre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> -->
+                        <a class="btn btn-outline-light me-2 ms-3 my-3" href="https://open.spotify.com/intl-ja">Spotify</a>
+                        <form action="header-search-form" class="d-flex mr-3 ms-3 my-lg-0 form-inline float-right">
+                            <input type="hidden" value="true" name="block">
+                            <input class="form-search_input" type="text" placeholder="プレイリスト検索">
+                            <input class="form-search btn btn-outline-light mr-3" type="submit" value="検索">
+                        </form>
+                        <div class="header_tool align-items-center me-2 my-3 float-right">
+                            {% if not user.is_authenticated %}
+                                <a href="/accounts/login" class="tool_login border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                    ログイン
+                                </a>
+                                <a href="/regist" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                    会員登録
+                                </a>
+                            {% else %}
+                                <a href="/accounts/logout" class="tool_register border-1 btn btn-outline-light px-4 py-2 ms-3">
+                                    ログアウト
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-    <div class="wrap">
-        <div class="d-flex justify-content-start">
-            <img src="{% static 'mypage/images/spotify.jpg' %}" alt="image-play" value="image-play" width="50" height="50" class="ms-3">
-            <h2 class="header-logo m-2 ps-1 mb-4">
-                Spotify プレイリスト作成サイト
-            </h2>
-        </div>
+    <div class="wrap mt-2">
         <!-- メニュー画面（連携） -->
         <div class="row">
             <div class="col-lg-2 side">
                 <!-- 自分自身の箇所にするときはactionを何も書かない -->
-                <form action="{% url 'index' %}" method="post" id="search_form">
-                    {% csrf_token %} 
-                    <div class="artist_initial side_content">
-                        <div>
-                            <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            検索種別
-                            </button>
-                        </div>
-                        <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">アルバム</label>
-                            </div>
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">アーティスト</label>
-                            </div>
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">プレイリスト</label>
-                            </div>
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">トラック</label>
-                            </div>
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">オーディオブック</label>
-                            </div>
-                        </div>
-                        <!-- <div class="collapse multi-collapse ms-3 w-75" id="collapseExample">
-                            <div class="card card-body me-3 flex-row bg-secondary text-white">
-                                <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">あ～</label>
-                            </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">か～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">さ～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">た～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">な～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">は～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ま～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">や～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">ら～</label>
-                        </div>
-                        <div class="card card-body me-3 flex-row bg-secondary text-white">
-                            <input type="checkbox" class="form-checkbox me-3 p-2 flex-row"><label for="">わ～</label>
-                        </div>
-                    </div> -->
-                    <div class="play_counts">
-                        <div>
-                            <button class="btn btn-primary ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                                人気順
-                            </button>
-                        </div>
-                        <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
-                            <!-- <form id="pop" action="" method="post"> -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="popper" id="popper_check" value="valid" checked>
-                                    <label class="form-check-label" for="valid">
-                                        有効
-                                    </label>
-                                    {% csrf_token %}
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="popper" id="popper_check" value="invalid">
-                                    <label class="form-check-label" for="invalid">
-                                        無効
-                                    </label>
-                                    {% csrf_token %}
-                                </div>
-                                <div class="collapse multi-collapse1 ms-3 range-container" id="collapseExample1">
-                                    <!-- <input type="range" name="example" min="0" max="100" step="1" value="{{ populary }}"> -->
-                                    <input id="slider" type="range" min="0" max="100" value="{{ populary }}" step="1" name="populary">
-                                    <span id="sliderValue"></span>
-                                    {% csrf_token %}
-                                </div>
-                            <!-- </form> -->
-                        </div>
+                <div class="artist_initial side_content">
+                    <!--　ジャンル -->
+                    <!-- <div class="collapse multi-collapse ms-3 w-75" id="collapseExample"> -->
+                    <div class="dropdown collapse multi-collapse ms-3 w-75" id="collapseExample">
+                        <form action="" id="genre_search" method="post">
+                            {% csrf_token %} 
+                            <select name="genre" id="" form="search_form" class="dropdown-toggle text-white bg-dark ms-3">
+                                <option value="" selected>ジャンルを選択してください</option>
+                                {% for genre in genres %}
+                                    <option class="dropdown-item active" value="{{ genre }}">{{ genre }}</option>
+                                {% endfor %}
+                            </select>
+                        </form>
                     </div>
-                    <div class="release_date">
-                        <div>
-                            <button class="btn btn-primary my-3 ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                                順序
-                            </button>
+                    <!-- </div> -->
+                    <form action="{% url 'index' %}" method="post" id="search_form">
+                        {% csrf_token %} 
+                        <!-- 検索フォーム -->
+                        <div class="d-flex justify-content-start small ms-3 mb-2">
+                            <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ search_word }}">
+                            <button class="btn-sm btn-primary search_btn" type="submit" value="検索" onclick="clickbtn">検索</button>
                         </div>
-                        <div class="collapse multi-collapse2 my-2 ms-3 small w-53" id="collapseExample2">
-                            <div class="card card-body me-2 flex-row bg-secondary text-white">
-                                <input type="radio" name="release_date" id="new" class="form-checkbox me-3 p-2 flex-row"><label for="">新しい</label>
-                            </div>
-                            <div class="card card-body me-2 flex-row bg-secondary text-white">
-                                <input type="radio" name="release_date" id="new" class="form-checkbox me-3 p-2 flex-row"><label for="">古い</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 検索フォーム -->
-                    <div class="d-flex justify-content-start small ms-3 mb-2">
-                        <input class="search w-75" type="search" name="search" placeholder="キーワードを入力" value="{{ search_word }}">
-                        <button class="btn-sm btn-primary" type="submit" value="検索" onclick="clickbtn()">検索</button>
-                    </div>
+                    </form>
                 </div>
-            </form>
-        </div>
+            </div>
         <!-- main -->
         <!-- Artist名 -->
         <div class="col-lg-8 bg-secondary text-white table-responsive">

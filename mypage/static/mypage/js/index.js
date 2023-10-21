@@ -13,15 +13,15 @@ const setValue = ()=> {
 }
 
 // 起動時の処理
-window.addEventListener("load", ()=>{
-    // スライダー、スライダー値DOM
-    slider = document.getElementById("slider");
-    sliderValue = document.getElementById("sliderValue");
-    // スライドさせたときの処理
-    slider.addEventListener("input", setValue);
-    // スライダー初期値を表示
-    setValue();
-});
+// window.addEventListener("load", ()=>{
+//     // スライダー、スライダー値DOM
+//     slider = document.getElementById("slider");
+//     sliderValue = document.getElementById("sliderValue");
+//     // スライドさせたときの処理
+//     slider.addEventListener("input", setValue);
+//     // スライダー初期値を表示
+//     setValue();
+// });
 
 // 有効・無効
 function clickbtn() {
@@ -36,7 +36,13 @@ function clickbtn() {
         }
     }
     document.getElementById("span2").textContent = str;
+
 }
+
+document.querySelector(".search_btn").addEventListener("click",function (params) {
+    // 検索中の画面表示
+    document.querySelector(".is-loading").classList.remove("hidden")
+})
 
 function addPlaylist(id,name,artists){
     const li = `<li class="user-music list-group-item bg-secondary text-white">
@@ -60,6 +66,7 @@ function getElement(e){
     // let dtn = document.getElementById('add');
     // dtn.remove();
 }
+
 
 // function getElement(){
 //     let dtn = document.getElementById('add');
