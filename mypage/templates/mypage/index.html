@@ -117,11 +117,10 @@
                 <!-- 自分自身の箇所にするときはactionを何も書かない -->
                 <div class="artist_initial side_content">
                     <!--　ジャンル -->
-                    <!-- <div class="collapse multi-collapse ms-3 w-75" id="collapseExample"> -->
-                    <div class="dropdown multi-collapse ms-3 w-75" id="collapseExample">
+                    <div class="dropdown multi-collapse w-75 small ms-3 mb-2" id="collapseExample">
                         <form action="" id="genre_search" method="post">
                             {% csrf_token %} 
-                            <select name="genre" id="" form="search_form" class="dropdown-toggle text-white bg-dark ms-3">
+                            <select name="genre" id="" form="search_form" class="text-white bg-dark">
                                 <option value="" selected>ジャンルを選択してください</option>
                                 {% for genre in genres %}
                                     <option class="dropdown-item active" value="{{ genre }}">{{ genre }}</option>
@@ -129,7 +128,6 @@
                             </select>
                         </form>
                     </div>
-                    <!-- </div> -->
                     <form action="{% url 'index' %}" method="post" id="search_form">
                         {% csrf_token %} 
                         <!-- 検索フォーム -->
