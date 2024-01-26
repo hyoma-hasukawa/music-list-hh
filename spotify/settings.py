@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-7f5=d2p212wt5_ssge1zbe+(viq^*s-499hr=x^prm!m8$w36o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com']
+CSRF_TRUSTED_ORIGINS = ['localhost','spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com','13.231.224.178']
 
 
 # Application definition
@@ -161,7 +162,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 
 # ユーザ登録時に確認メールを送信するか(none=送信しない, mandatory=送信する)
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True   # ユーザ登録にメルアド必須にする
 
 # 東京のタイムゾーンに設定
@@ -170,11 +171,18 @@ TIME_ZONE = 'Asia/Tokyo'
 # タイムゾーンを使用するかどうか
 USE_TZ = True
 
-EMAIL_BACKEND = "django_ses.SESBackend"
-AWS_SES_REGION_NAME = 'ap-northeast-1'
-AWS_SES_REGION_ENDPOINT = 'email-smtp.ap-northeast-1.amazonaws.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "hyoma328hyoma@gmail.com"
+#AWS_SES_REGION_NAME = 'ap-northeast-1'
+#AWS_SES_REGION_ENDPOINT = 'email-smtp.ap-northeast-1.amazonaws.com'
 
-CSRF_TRUSTED_ORIGINS = ['http://54.199.160.190']
+EMAIL_HOST = '54.199.160.190'
+EMAIL_HOST_USER = 'AKIAQMY4JUTKZV5LQ7QU'
+EMAIL_HOST_PASSWORD = 'BE/w9nXaC1ZqG6YlmERWEnR/nfufu8v1GfLTJ/CBdBXn'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+CSRF_TRUSTED_ORIGINS = ['http://spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com','http://13.231.224.178']
 
 # 認証
 AUTHENTICATION_BACKENDS = (

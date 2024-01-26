@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/* header
+-----------------------------*/
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+body{
+    position: relative;
+}
+
+.is-loading{
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(100, 100, 100, 0.5);
+	z-index: 99;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.hidden{
+	display: none;
+}
