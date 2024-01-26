@@ -153,7 +153,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ログイン・ログアウト時のリダイレクト先
-LOGIN_REDIRECT_URL = 'mypage.index'
+LOGIN_REDIRECT_URL = '/mypage'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # 認証方式を「メルアドとパスワード」に設定
