@@ -3,84 +3,70 @@
         "model": "mypage.spotify_genre",
         "pk": 1,
         "fields": {
-            "name": "アニメ"        
+            "name": "Anime"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 2,
         "fields": {
-            "name": "レゲエ/ヒップホップ・ラップ"        
+            "name": "hip hop"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 3,
         "fields": {
-            "name": "ゲーム"        
+            "name": "Video Game Music"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 4,
         "fields": {
-            "name": "J-POP"        
+            "name": "pop"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 5,
         "fields": {
-            "name": "洋楽"        
+            "name": "Pop Rock"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 6,
         "fields": {
-            "name": "フェス"        
+            "name": "Visual Kei"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 7,
         "fields": {
-            "name": "ロック・バンド・インディーズ"        
+            "name": "K-POP"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 8,
         "fields": {
-            "name": "ヴィジュアル系"        
+            "name": "edm"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 9,
         "fields": {
-            "name": "K-POP"        
+            "name": "Idol"        
         }
     },
     {
         "model": "mypage.spotify_genre",
         "pk": 10,
         "fields": {
-            "name": "EDM・ダンス・クラブ"        
-        }
-    },
-    {
-        "model": "mypage.spotify_genre",
-        "pk": 11,
-        "fields": {
-            "name": "アイドル"        
-        }
-    },
-    {
-        "model": "mypage.spotify_genre",
-        "pk": 12,
-        "fields": {
-            "name": "メタル・ハードコア"        
+            "name": "Death Metal"        
         }
     }
 ]

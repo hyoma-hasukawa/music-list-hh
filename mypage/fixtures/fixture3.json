@@ -1,0 +1,72 @@
+[
+    {
+        "model": "mypage.genre",
+        "pk": 1,
+        "fields": {
+            "name": "アニメ"      
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 2,
+        "fields": {
+            "name": "hip-hop"       
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 3,
+        "fields": {
+            "name": "ゲーム"        
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 4,
+        "fields": {
+            "name": "J-POP"          
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 5,
+        "fields": {
+            "name": "ロック"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 6,
+        "fields": {
+            "name": "ヴィジュアル"         
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 7,
+        "fields": {
+            "name": "K-POP"            
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 8,
+        "fields": {
+            "name": "EDM"   
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 9,
+        "fields": {
+            "name": "アイドル"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 10,
+        "fields": {
+            "name": "メタル"    
+        }
+    }
+]
