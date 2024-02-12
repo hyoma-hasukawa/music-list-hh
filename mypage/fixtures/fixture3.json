@@ -68,5 +68,61 @@
         "fields": {
             "name": "メタル"    
         }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 11,
+        "fields": {
+            "name": "クラシック"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 12,
+        "fields": {
+            "name": "ブルース"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 13,
+        "fields": {
+            "name": "ブルース・ロック"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 14,
+        "fields": {
+            "name": "ジャズ"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 15,
+        "fields": {
+            "name": "R&B"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 16,
+        "fields": {
+            "name": "ソウルミュージック"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 17,
+        "fields": {
+            "name": "ロック"    
+        }
+    },
+    {
+        "model": "mypage.genre",
+        "pk": 18,
+        "fields": {
+            "name": "ハウス"    
+        }
     }
 ]

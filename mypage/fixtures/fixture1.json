@@ -68,5 +68,54 @@
         "fields": {
             "name": "Death Metal"        
         }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 11,
+        "fields": {
+            "name": "Classical"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 12,
+        "fields": {
+            "name": "Blues"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 13,
+        "fields": {
+            "name": "Jazz"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 14,
+        "fields": {
+            "name": "R&b"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 15,
+        "fields": {
+            "name": "Soul"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 16,
+        "fields": {
+            "name": "Rock"        
+        }
+    },
+    {
+        "model": "mypage.spotify_genre",
+        "pk": 17,
+        "fields": {
+            "name": "House"        
+        }
     }
 ]

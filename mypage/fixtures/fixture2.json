@@ -102,5 +102,77 @@
             "genre_id": "10",
             "spotify_genre_id": "10"     
         }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 14,
+        "fields": {
+            "genre_id": "11",
+            "spotify_genre_id": "11"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 15,
+        "fields": {
+            "genre_id": "12",
+            "spotify_genre_id": "12"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 16,
+        "fields": {
+            "genre_id": "13",
+            "spotify_genre_id": "12"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 17,
+        "fields": {
+            "genre_id": "14",
+            "spotify_genre_id": "13"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 18,
+        "fields": {
+            "genre_id": "15",
+            "spotify_genre_id": "14"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 19,
+        "fields": {
+            "genre_id": "16",
+            "spotify_genre_id": "15"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 20,
+        "fields": {
+            "genre_id": "17",
+            "spotify_genre_id": "16"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 21,
+        "fields": {
+            "genre_id": "17",
+            "spotify_genre_id": "4"     
+        }
+    },
+    {
+        "model": "mypage.genre_spotify_type",
+        "pk": 22,
+        "fields": {
+            "genre_id": "18",
+            "spotify_genre_id": "17"     
+        }
     }
 ]
