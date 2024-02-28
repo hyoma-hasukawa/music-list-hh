@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-7f5=d2p212wt5_ssge1zbe+(viq^*s-499hr=x^prm!m8$w36o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com']
+ALLOWED_HOSTS = ['localhost','spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com','127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['localhost','spotify-django-lb-499948978.ap-northeast-1.elb.amazonaws.com','13.231.224.178']
 
 
@@ -95,7 +95,7 @@ DATABASES = {
         'HOST': env('HOST'),
         'PORT': env('PORT'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }

@@ -1,0 +1,18 @@
+[
+    {
+        "model": "mypage.mypage_users",
+        "pk": 1,
+        "fields": {
+            "name": "Tanaka Tarou",
+            "spotify_account": "tanaka@gmail.com"
+        }
+    },
+    {
+        "model": "mypage.mypage_users",
+        "pk": 2,
+        "fields": {
+            "name": "Maeda Kouske",
+            "spotify_account": "Maeda@gmail.com"
+        }
+    }
+]

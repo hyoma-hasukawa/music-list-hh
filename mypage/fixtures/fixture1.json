@@ -3,7 +3,7 @@
         "model": "mypage.spotify_genre",
         "pk": 1,
         "fields": {
-            "name": "Anime"        
+            "name": "anime"        
         }
     },
     {
