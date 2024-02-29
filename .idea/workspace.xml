@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="20230715_授業後">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/wsgi.py" afterDir="false" />
-    </list>
+    <list default="true" id="5abf81ba-4e46-4e0c-aa35-cab2a1f9f2a0" name="Changes" comment="20230715_授業後" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
