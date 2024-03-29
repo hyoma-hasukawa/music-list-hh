@@ -5,6 +5,7 @@ import spotipy
 import datetime
 # Json 
 import json
+import pprint
 # 関数がimportされていなかった
 from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -32,7 +33,9 @@ def index(request):
     client_id = 'da5b39a37d8d422e9f22d5c05a7a56e6' 
     client_secret = '1a1ccd9615ce40c0943042e5c8e46f41'
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
-    # genres = sp.recommendation_genre_seeds()
+    #
+    genres = sp.recommendation_genre_seeds()
+    pprint.pprint(genres)
     genres = genre.objects.all()
     context = {
         # "genres":genres["genres"]
