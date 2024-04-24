@@ -1,4 +1,5 @@
-<div>![Spotifyプレイリスト作成ツール](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/12c4cea9-7173-4b53-b040-93e8e16a1562)</div>
+# Spotify
+![Spotifyプレイリスト作成ツール](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/12c4cea9-7173-4b53-b040-93e8e16a1562)
 <br>
 <div>・ソフトウェアの概要<div>
 <div>Spotifyのプレイリスト作成ツールとなります。
