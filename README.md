@@ -7,15 +7,18 @@
 <br>
 <br>
 【使用方法】
-①楽曲を検索する。
-A.ジャンル検索
+<br>
+<div>①楽曲を検索する。</div>
+<div>パターンA_ジャンル検索</div>
 https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/bb56f2e6-aa8c-436b-be18-1e892d2e364a
-
-B.キーワード検索
-
-C.ジャンル + キーワード検索
-
-
+<br>
+<div>パターンB_キーワード検索</div>
+https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4d55-9a96-9cd524997a17
+<br>
+<div>パターンC_ジャンル + キーワード検索</div>
+https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a
+<br>
+<br>
 
 ・製作者 　　　: 蓮川　俵馬
 ・開発環境 : Visual Studio、PyCharm CE、ProtoPie、Postgres、DBeaver、
