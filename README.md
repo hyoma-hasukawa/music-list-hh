@@ -19,19 +19,16 @@ https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4
 https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a
 <br>
 <br>
-
-・製作者 　　　: 蓮川　俵馬
-・開発環境 : Visual Studio、PyCharm CE、ProtoPie、Postgres、DBeaver、
-・動作環境 : ①チップ・・Apple M1 　②メモリ・・16GB　③MacOS・・Sonoma 14.3.1
-・バージョン　: ①HTML5  ②CSS3 ③Bootstrap V5.3.0 ④ Python 3.10.7 ⑤Django 4.1.2
-・Github　　　: https://github.com/hyoma-hasukawa/music-list-hh
-・オリジナルコンテンツ : http://13.231.224.178/mypage/
-・テストユーザー :メールアドレス：ご記入をお願いいたします
-             パスワード：ご記入をお願いいたします
-・E-mail : 328hyoma328@gmail.com
-・免責事項
-・転載について
-・FAQ
-・既存のバグ
-・改変履歴
-・今後の改変予定
+<br>
+<div>【製作者】: 蓮川　俵馬</div>
+<div>【開発環境】: Visual Studio、PyCharm CE、ProtoPie、Postgres、DBeaver</div>
+<div>【動作環境】: ①チップ・・Apple M1 ②メモリ・・16GB　③MacOS・・Sonoma 14.3.1</div>
+<br>
+<div>【バージョン】: ①HTML5  ②CSS3 ③Bootstrap V5.3.0 ④ Python 3.10.7 ⑤Django 4.1.2</div>
+<div>【Github】: https://github.com/hyoma-hasukawa/music-list-hh</div>
+<br>
+<div>【オリジナルコンテンツ】: http://13.231.224.178/mypage/</div>
+<div>【テストユーザー】: メールアドレス：hasukawa123hyoma@gmail.com</div>
+<div>　　　　　　　　　: パスワード：Aq12345678</div>
+br>
+<div>E-mail : 328hyoma328@gmail.com</div>
