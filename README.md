@@ -19,6 +19,11 @@ https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4
 https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a
 <br>
 <br>
+<div>②追加したい楽曲をプレイリストに追加する。</div>
+![スクリーンショット 2024-04-24 23 55 29](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/f2ddac9f-6304-4150-a1c1-be902bfe5328)
+<br>
+<br>
+<div>③Spotifyに反映する。</div>
 <br>
 <div>【製作者】: 蓮川　俵馬</div>
 <div>【開発環境】: Visual Studio、PyCharm CE、ProtoPie、Postgres、DBeaver</div>
