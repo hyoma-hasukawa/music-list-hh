@@ -11,7 +11,7 @@
 <div>①楽曲を検索する。</div>
 <div>パターンA_ジャンル検索</div>
 
-![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/bb56f2e6-aa8c-436b-be18-1e892d2e364a)
+![junre](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/f199ed8a-0a9c-47ab-8251-6fdd20ac5021)
 <br>
 <div>パターンB_キーワード検索</div>
 
