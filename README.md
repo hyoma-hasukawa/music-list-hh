@@ -31,4 +31,4 @@ https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-4
 <div>【テストユーザー】: メールアドレス：hasukawa123hyoma@gmail.com</div>
 <div>　　　　　　　　　: パスワード：Aq12345678</div>
 <br>
-<div>E-mail : 328hyoma328@gmail.com</div>
+<div>【E-mail 】: 328hyoma328@gmail.com</div>
