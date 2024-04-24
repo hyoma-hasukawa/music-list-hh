@@ -15,11 +15,13 @@
 <br>
 <div>パターンB_キーワード検索</div>
 
-![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4d55-9a96-9cd524997a17)
+![検索](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/9804cceb-ac0f-4cc8-936a-c1774fb41006)
+
 <br>
 <div>パターンC_ジャンル + キーワード検索</div>
 
-![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a)
+![ジャンルプラ検索](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/89003ad3-4a10-4224-ba70-a10f68277b5b)
+
 <br>
 <br>
 <div>②追加したい楽曲をプレイリストに追加する。</div>
