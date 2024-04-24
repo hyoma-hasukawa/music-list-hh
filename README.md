@@ -10,17 +10,21 @@
 <br>
 <div>①楽曲を検索する。</div>
 <div>パターンA_ジャンル検索</div>
-https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/bb56f2e6-aa8c-436b-be18-1e892d2e364a
+
+![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/bb56f2e6-aa8c-436b-be18-1e892d2e364a)
 <br>
 <div>パターンB_キーワード検索</div>
-https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4d55-9a96-9cd524997a17
+
+![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/117fb708-9aa8-4d55-9a96-9cd524997a17)
 <br>
 <div>パターンC_ジャンル + キーワード検索</div>
-https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a
+
+![gif](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/3ffc3b4d-4d9d-43cc-99b5-2423c9e11d3a)
 <br>
 <br>
 <div>②追加したい楽曲をプレイリストに追加する。</div>
-![スクリーンショット 2024-04-24 23 55 29](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/f2ddac9f-6304-4150-a1c1-be902bfe5328)
+
+![スクリーンショット 2024-04-24 23 55 29](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/0feb2b2a-8101-432e-9a94-c69ef4f6ff34)
 <br>
 <br>
 <div>③Spotifyに反映する。</div>
