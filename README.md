@@ -1,19 +1,21 @@
-# Spotify
 ![Spotifyプレイリスト作成ツール](https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/12c4cea9-7173-4b53-b040-93e8e16a1562)
 <br>
-<div>・ソフトウェアの概要<div>
+<div>【ソフトウェアの概要】<div>
 <div>Spotifyのプレイリスト作成ツールとなります。
 ジャンル・キーワードを用いてSpotify内の楽曲を検索します。
 検索結果からプレイリスト追加したい楽曲を追加し、ご自身の好きなプレイリストを作成することができるツールとなっております。</div>
 <br>
 <br>
-・使用方法
+【使用方法】
 ①楽曲を検索する。
 A.ジャンル検索
+https://github.com/hyoma-hasukawa/music-list-hh/assets/116575053/bb56f2e6-aa8c-436b-be18-1e892d2e364a
 
 B.キーワード検索
 
 C.ジャンル + キーワード検索
+
+
 
 ・製作者 　　　: 蓮川　俵馬
 ・開発環境 : Visual Studio、PyCharm CE、ProtoPie、Postgres、DBeaver、
